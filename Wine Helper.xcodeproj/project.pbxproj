@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1430072BA36A59000C6C8C /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430062BA36A59000C6C8C /* UIColor + Extensions.swift */; };
+		7B1430092BA36BFA000C6C8C /* SystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430082BA36BFA000C6C8C /* SystemImage.swift */; };
+		7B14300B2BA3B7DD000C6C8C /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B14300A2BA3B7DD000C6C8C /* UIFont + Extensions.swift */; };
+		7B14300D2BA3C638000C6C8C /* AuthenticationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B14300C2BA3C638000C6C8C /* AuthenticationPresenter.swift */; };
+		7B14300F2BA3C645000C6C8C /* AuthenticationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B14300E2BA3C645000C6C8C /* AuthenticationBuilder.swift */; };
+		7B1430112BA3C842000C6C8C /* AuthenticationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430102BA3C842000C6C8C /* AuthenticationRouter.swift */; };
+		7B1430132BA3C89E000C6C8C /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430122BA3C89E000C6C8C /* LoginPresenter.swift */; };
+		7B1430152BA3C8A9000C6C8C /* LoginBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430142BA3C8A9000C6C8C /* LoginBuilder.swift */; };
+		7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430162BA3C8B1000C6C8C /* LoginRouter.swift */; };
 		7BA0E0A52B9C5C0D0061744C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */; };
 		7BA0E0A72B9C5C0D0061744C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */; };
-		7BA0E0A92B9C5C0D0061744C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A82B9C5C0D0061744C /* AuthenticationViewController.swift */; };
-		7BA0E0AC2B9C5C0D0061744C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0AA2B9C5C0D0061744C /* Main.storyboard */; };
+		7BA0E0A92B9C5C0D0061744C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A82B9C5C0D0061744C /* LoginViewController.swift */; };
 		7BA0E0AE2B9C5C0F0061744C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */; };
 		7BA0E0B12B9C5C0F0061744C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0AF2B9C5C0F0061744C /* LaunchScreen.storyboard */; };
 		7BA0E0BB2B9C60EB0061744C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0BA2B9C60EB0061744C /* GoogleService-Info.plist */; };
@@ -41,7 +49,7 @@
 		7BA0E0EE2B9C614E0061744C /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7BA0E0ED2B9C614E0061744C /* FirebaseRemoteConfigSwift */; };
 		7BA0E0F02B9C614E0061744C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7BA0E0EF2B9C614E0061744C /* FirebaseStorage */; };
 		7BA0E0F22B9C614E0061744C /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7BA0E0F12B9C614E0061744C /* FirebaseStorageCombine-Community */; };
-		7BA0E0F42B9C6FFF0061744C /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F32B9C6FFF0061744C /* NextViewController.swift */; };
+		7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F32B9C6FFF0061744C /* AuthenticationViewController.swift */; };
 		7BA0E0F62B9E21400061744C /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F52B9E21400061744C /* InsetTextField.swift */; };
 		7BA0E0F82B9E2C630061744C /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F72B9E2C620061744C /* OpenSans.ttf */; };
 		7BA0E0FA2B9E2E750061744C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F92B9E2E750061744C /* Image.swift */; };
@@ -50,16 +58,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B1430062BA36A59000C6C8C /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
+		7B1430082BA36BFA000C6C8C /* SystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImage.swift; sourceTree = "<group>"; };
+		7B14300A2BA3B7DD000C6C8C /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
+		7B14300C2BA3C638000C6C8C /* AuthenticationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPresenter.swift; sourceTree = "<group>"; };
+		7B14300E2BA3C645000C6C8C /* AuthenticationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationBuilder.swift; sourceTree = "<group>"; };
+		7B1430102BA3C842000C6C8C /* AuthenticationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRouter.swift; sourceTree = "<group>"; };
+		7B1430122BA3C89E000C6C8C /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		7B1430142BA3C8A9000C6C8C /* LoginBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBuilder.swift; sourceTree = "<group>"; };
+		7B1430162BA3C8B1000C6C8C /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		7BA0E0A12B9C5C0D0061744C /* Wine Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wine Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7BA0E0A82B9C5C0D0061744C /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
-		7BA0E0AB2B9C5C0D0061744C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7BA0E0A82B9C5C0D0061744C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BA0E0B02B9C5C0F0061744C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BA0E0B22B9C5C0F0061744C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BA0E0BA2B9C60EB0061744C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		7BA0E0F32B9C6FFF0061744C /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		7BA0E0F32B9C6FFF0061744C /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		7BA0E0F52B9E21400061744C /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		7BA0E0F72B9E2C620061744C /* OpenSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSans.ttf; sourceTree = "<group>"; };
 		7BA0E0F92B9E2E750061744C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -105,6 +121,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B1430052BA36532000C6C8C /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BA0E0A82B9C5C0D0061744C /* LoginViewController.swift */,
+				7B1430122BA3C89E000C6C8C /* LoginPresenter.swift */,
+				7B1430142BA3C8A9000C6C8C /* LoginBuilder.swift */,
+				7B1430162BA3C8B1000C6C8C /* LoginRouter.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
 		7BA0E0982B9C5C0D0061744C = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +157,6 @@
 				7BA0E1032B9E37C80061744C /* OnboardingAuthentication */,
 				7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */,
 				7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */,
-				7BA0E0AA2B9C5C0D0061744C /* Main.storyboard */,
 				7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */,
 				7BA0E0AF2B9C5C0F0061744C /* LaunchScreen.storyboard */,
 				7BA0E1072B9E38970061744C /* Plists */,
@@ -144,6 +170,8 @@
 			children = (
 				7BA0E0FB2B9E33DA0061744C /* UIImage + Extensions.swift */,
 				7BA0E0FD2B9E344A0061744C /* UIButton + Extensions.swift */,
+				7B1430062BA36A59000C6C8C /* UIColor + Extensions.swift */,
+				7B14300A2BA3B7DD000C6C8C /* UIFont + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -160,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				7BA0E0F92B9E2E750061744C /* Image.swift */,
+				7B1430082BA36BFA000C6C8C /* SystemImage.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -167,7 +196,6 @@
 		7BA0E1032B9E37C80061744C /* OnboardingAuthentication */ = {
 			isa = PBXGroup;
 			children = (
-				7BA0E0F32B9C6FFF0061744C /* NextViewController.swift */,
 				7BA0E1042B9E37DB0061744C /* AuthenticationViewController */,
 			);
 			path = OnboardingAuthentication;
@@ -176,7 +204,11 @@
 		7BA0E1042B9E37DB0061744C /* AuthenticationViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7BA0E0A82B9C5C0D0061744C /* AuthenticationViewController.swift */,
+				7BA0E0F32B9C6FFF0061744C /* AuthenticationViewController.swift */,
+				7B14300C2BA3C638000C6C8C /* AuthenticationPresenter.swift */,
+				7B14300E2BA3C645000C6C8C /* AuthenticationBuilder.swift */,
+				7B1430102BA3C842000C6C8C /* AuthenticationRouter.swift */,
+				7B1430052BA36532000C6C8C /* LoginViewController */,
 			);
 			path = AuthenticationViewController;
 			sourceTree = "<group>";
@@ -291,7 +323,6 @@
 				7BA0E0B12B9C5C0F0061744C /* LaunchScreen.storyboard in Resources */,
 				7BA0E0BB2B9C60EB0061744C /* GoogleService-Info.plist in Resources */,
 				7BA0E0AE2B9C5C0F0061744C /* Assets.xcassets in Resources */,
-				7BA0E0AC2B9C5C0D0061744C /* Main.storyboard in Resources */,
 				7BA0E0F82B9E2C630061744C /* OpenSans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,28 +334,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BA0E0A92B9C5C0D0061744C /* AuthenticationViewController.swift in Sources */,
+				7BA0E0A92B9C5C0D0061744C /* LoginViewController.swift in Sources */,
 				7BA0E0FA2B9E2E750061744C /* Image.swift in Sources */,
 				7BA0E0FC2B9E33DA0061744C /* UIImage + Extensions.swift in Sources */,
 				7BA0E0FE2B9E344A0061744C /* UIButton + Extensions.swift in Sources */,
 				7BA0E0F62B9E21400061744C /* InsetTextField.swift in Sources */,
-				7BA0E0F42B9C6FFF0061744C /* NextViewController.swift in Sources */,
+				7B14300B2BA3B7DD000C6C8C /* UIFont + Extensions.swift in Sources */,
+				7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */,
+				7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */,
+				7B1430072BA36A59000C6C8C /* UIColor + Extensions.swift in Sources */,
+				7B1430112BA3C842000C6C8C /* AuthenticationRouter.swift in Sources */,
+				7B1430132BA3C89E000C6C8C /* LoginPresenter.swift in Sources */,
+				7B14300D2BA3C638000C6C8C /* AuthenticationPresenter.swift in Sources */,
 				7BA0E0A52B9C5C0D0061744C /* AppDelegate.swift in Sources */,
+				7B1430092BA36BFA000C6C8C /* SystemImage.swift in Sources */,
+				7B1430152BA3C8A9000C6C8C /* LoginBuilder.swift in Sources */,
 				7BA0E0A72B9C5C0D0061744C /* SceneDelegate.swift in Sources */,
+				7B14300F2BA3C645000C6C8C /* AuthenticationBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7BA0E0AA2B9C5C0D0061744C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7BA0E0AB2B9C5C0D0061744C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7BA0E0AF2B9C5C0F0061744C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

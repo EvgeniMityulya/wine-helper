@@ -10,5 +10,6 @@ import Foundation
 enum Image {
     enum Registration {
         static let topIconWine = "topIconWine"
+        static let googleIcon = "googleIcon"
     }
 }
