@@ -10,6 +10,8 @@ import UIKit
 protocol SignUpViewInput: AnyObject {
     func changeEyeButtonImage()
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
+    func isEmptyFields() -> Bool
+    func getUsernameAndMail() -> (String, String)?
 }
 
 
@@ -110,7 +112,7 @@ final class SignUpViewController: UIViewController {
         return textField
     }()
     
-    private lazy var loginButton: UIButton = {
+    private lazy var signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -121,9 +123,9 @@ final class SignUpViewController: UIViewController {
         button.layer.masksToBounds = true
         
         button.backgroundColor = UIColor.CustomColors.burgundy
-        button.addTarget(self, action: #selector(loginButtonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
-        button.addTarget(self, action: #selector(loginButtonTouchUpOutside), for: .touchUpOutside)
+        button.addTarget(self, action: #selector(signUpButtonTouchDown), for: .touchDown)
+        button.addTarget(self, action: #selector(signUpButtonTouchUpInside), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signUpButtonTouchUpOutside), for: .touchUpOutside)
         return button
     }()
     
@@ -247,6 +249,23 @@ extension SignUpViewController: SignUpViewInput {
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat) {
         sender.backgroundColor = color.withAlphaComponent(alpha)
     }
+    
+    func isEmptyFields() -> Bool {
+        guard let username = usernameTextField.text, let mail = mailTextField.text else {
+            return true // Возвращаем true, если хотя бы одно из полей пусто
+        }
+        return username.isEmpty || mail.isEmpty
+    }
+    
+    func getUsernameAndMail() -> (String, String)? {
+        guard let username = usernameTextField.text,
+              let mail = mailTextField.text,
+              !username.isEmpty,
+              !mail.isEmpty else {
+            return nil
+        }
+        return (username, mail)
+    }
 }
 
 extension SignUpViewController: UITextFieldDelegate {
@@ -263,15 +282,12 @@ extension SignUpViewController: UITextFieldDelegate {
         
         let keyboardHeight = keyboardFrame.height
         
-            self.scrollView.contentInset.bottom = keyboardHeight
-        
+        self.scrollView.contentInset.bottom = keyboardHeight
     }
     
     
     @objc func keyboardWillHide(_ notification: Notification) {
-            self.scrollView.contentInset = .zero
-            
-        
+        self.scrollView.contentInset = .zero
     }
     
     @objc func dismissKeyboard() {
@@ -280,16 +296,16 @@ extension SignUpViewController: UITextFieldDelegate {
 }
 
 private extension SignUpViewController {
-    @objc private func loginButtonTouchDown() {
-        output?.loginButtonTouchDown(loginButton)
+    @objc private func signUpButtonTouchDown() {
+        output?.signUpButtonTouchDown(signUpButton)
     }
     
-    @objc private func loginButtonTouchUpInside() {
-        output?.loginButtonTouchUpInside(loginButton)
+    @objc private func signUpButtonTouchUpInside() {
+        output?.signUpButtonTouchUpInside(signUpButton)
     }
     
-    @objc private func loginButtonTouchUpOutside() {
-        output?.loginButtonTouchUpOutside(loginButton)
+    @objc private func signUpButtonTouchUpOutside() {
+        output?.signUpButtonTouchUpOutside(signUpButton)
     }
     
     @objc private func togglePasswordVisibility(_ sender: UIButton) {
@@ -315,7 +331,7 @@ private extension SignUpViewController {
             self.passwordImageView,
             self.mailTextField,
             self.passwordTextField,
-            self.loginButton,
+            self.signUpButton,
             self.separatorLabel,
             self.separatorView,
             self.appleLoginButton,
@@ -372,12 +388,12 @@ private extension SignUpViewController {
             self.passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             
             
-            self.loginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 20),
-            self.loginButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),
-            self.loginButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -30),
-            self.loginButton.heightAnchor.constraint(equalToConstant: 40),
+            self.signUpButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 20),
+            self.signUpButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),
+            self.signUpButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -30),
+            self.signUpButton.heightAnchor.constraint(equalToConstant: 40),
             
-            self.separatorLabel.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 20),
+            self.separatorLabel.topAnchor.constraint(equalTo: self.signUpButton.bottomAnchor, constant: 20),
             self.separatorLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.separatorLabel.widthAnchor.constraint(equalToConstant: 50),
             self.separatorLabel.heightAnchor.constraint(equalToConstant: 20),

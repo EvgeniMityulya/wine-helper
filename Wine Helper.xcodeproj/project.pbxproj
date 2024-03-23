@@ -67,6 +67,10 @@
 		7BDDE70B2BAF004700B073EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE70A2BAF004700B073EF /* NetworkManager.swift */; };
 		7BDDE70E2BAF00B600B073EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7BDDE70D2BAF00B600B073EF /* Alamofire */; };
 		7BDDE7102BAF00B600B073EF /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 7BDDE70F2BAF00B600B073EF /* AlamofireDynamic */; };
+		7BDDE7122BAF0A8E00B073EF /* EmailLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */; };
+		7BDDE7152BAF0FB700B073EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */; };
+		7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7182BAF104600B073EF /* MapViewController.swift */; };
+		7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +107,10 @@
 		7BDDE7052BAEE50F00B073EF /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
 		7BDDE7072BAEE53A00B073EF /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		7BDDE70A2BAF004700B073EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLinkViewController.swift; sourceTree = "<group>"; };
+		7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7BDDE7182BAF104600B073EF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +188,7 @@
 				7BA0E0FF2B9E37840061744C /* Extensions */,
 				7BA0E1032B9E37C80061744C /* OnboardingAuthentication */,
 				7BDDE7092BAEE57000B073EF /* OnboardingSupport */,
+				7BDDE7162BAF0FBF00B073EF /* MainControllers */,
 				7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */,
 				7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */,
 				7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */,
@@ -265,6 +274,7 @@
 				7BBB7EFF2BA77C0A000A66AA /* SignUpPresenter.swift */,
 				7BBB7F012BA77C0A000A66AA /* SignUpBuilder.swift */,
 				7BBB7F022BA77C0A000A66AA /* SignUpRouter.swift */,
+				7BDDE7132BAF0AA200B073EF /* EmailLinkViewController */,
 			);
 			path = SignUpViewController;
 			sourceTree = "<group>";
@@ -278,6 +288,48 @@
 				7BDDE7072BAEE53A00B073EF /* MainRouter.swift */,
 			);
 			path = OnboardingSupport;
+			sourceTree = "<group>";
+		};
+		7BDDE7132BAF0AA200B073EF /* EmailLinkViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */,
+			);
+			path = EmailLinkViewController;
+			sourceTree = "<group>";
+		};
+		7BDDE7162BAF0FBF00B073EF /* MainControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7BDDE71A2BAF104900B073EF /* MapViewController */,
+				7BDDE71D2BAF105F00B073EF /* CatalogViewController */,
+				7BDDE7172BAF0FC900B073EF /* ProfileViewController */,
+			);
+			path = MainControllers;
+			sourceTree = "<group>";
+		};
+		7BDDE7172BAF0FC900B073EF /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		7BDDE71A2BAF104900B073EF /* MapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BDDE7182BAF104600B073EF /* MapViewController.swift */,
+			);
+			path = MapViewController;
+			sourceTree = "<group>";
+		};
+		7BDDE71D2BAF105F00B073EF /* CatalogViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */,
+			);
+			path = CatalogViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +452,8 @@
 				7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */,
 				7BBB7F062BA77C0A000A66AA /* SignUpRouter.swift in Sources */,
 				7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */,
+				7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */,
+				7BDDE7152BAF0FB700B073EF /* ProfileViewController.swift in Sources */,
 				7BBB7F052BA77C0A000A66AA /* SignUpPresenter.swift in Sources */,
 				7B1430072BA36A59000C6C8C /* UIColor + Extensions.swift in Sources */,
 				7B1430112BA3C842000C6C8C /* AuthenticationRouter.swift in Sources */,
@@ -408,9 +462,11 @@
 				7BA0E0A52B9C5C0D0061744C /* AppDelegate.swift in Sources */,
 				7B1430092BA36BFA000C6C8C /* SystemImage.swift in Sources */,
 				7B1430152BA3C8A9000C6C8C /* LoginBuilder.swift in Sources */,
+				7BDDE7122BAF0A8E00B073EF /* EmailLinkViewController.swift in Sources */,
 				7BDDE7062BAEE50F00B073EF /* MainBuilder.swift in Sources */,
 				7BDDE7042BAEE4CF00B073EF /* MainPresenter.swift in Sources */,
 				7BA0E0A72B9C5C0D0061744C /* SceneDelegate.swift in Sources */,
+				7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */,
 				7BBB7F042BA77C0A000A66AA /* SignUpBuilder.swift in Sources */,
 				7BBB7EFD2BA77960000A66AA /* UIView + Extensions.swift in Sources */,
 				7B14300F2BA3C645000C6C8C /* AuthenticationBuilder.swift in Sources */,

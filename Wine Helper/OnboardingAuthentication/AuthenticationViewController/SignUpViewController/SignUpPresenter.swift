@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Firebase
 
 protocol SignUpViewOutput {
     func eyeButtonTapped()
-    func loginButtonTouchDown(_ sender: UIButton)
-    func loginButtonTouchUpInside(_ sender: UIButton)
-    func loginButtonTouchUpOutside(_ sender: UIButton)
+    func signUpButtonTouchDown(_ sender: UIButton)
+    func signUpButtonTouchUpInside(_ sender: UIButton)
+    func signUpButtonTouchUpOutside(_ sender: UIButton)
 }
 
 final class SignUpPresenter: SignUpViewOutput {
@@ -28,15 +29,43 @@ final class SignUpPresenter: SignUpViewOutput {
         input.changeEyeButtonImage()
     }
     
-    func loginButtonTouchDown(_ sender: UIButton) {
+    func signUpButtonTouchDown(_ sender: UIButton) {
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 0.8)
     }
     
-    func loginButtonTouchUpInside(_ sender: UIButton) {
+    func signUpButtonTouchUpInside(_ sender: UIButton) {
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
+        
+        guard let (username, mail) = input.getUsernameAndMail() else {
+            print("Пожалуйста, заполните все поля.")
+            return
+        }
+        
+//        Auth.auth().fetchSignInMethods(forEmail: mail) { (methods, error) in
+//            if let error = error {
+//                print("Error fetching sign-in methods: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            guard let methods = methods else {
+//                print("No sign-in methods available.")
+//                return
+//            }
+//            
+//            if methods.contains(EmailAuthProviderID) {
+//                // Адрес электронной почты уже зарегистрирован
+//                print("Email already registered. Please sign in.")
+//                return
+//            }
+//            
+//            // Отправляем ссылку аутентификации на электронную почту
+//            sendSignInLink(to: mail, withUsername: username)
+//            print("Sign-in link sent to email: \(mail)")
+//        }
     }
     
-    func loginButtonTouchUpOutside(_ sender: UIButton) {
+    func signUpButtonTouchUpOutside(_ sender: UIButton) {
+        print(3)
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
     }
 }
