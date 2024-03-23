@@ -20,5 +20,13 @@ extension UIColor {
         static var text: UIColor {
             return UIColor(named: "TextColor") ?? .white
         }
+        
+        static var buttonWhite: UIColor {
+            return UIColor(named: "WhiteButtonColor") ?? .white
+        }
+        
+        static var buttonWhiteTextColor: UIColor {
+            return UIColor(named: "ButtonWhiteTextColor") ?? .white
+        }
     }
 }

@@ -1,18 +1,18 @@
 //
-//  NextViewController.swift
+//  MainViewController.swift
 //  Wine Helper
 //
-//  Created by Евгений Митюля on 3/9/24.
+//  Created by Евгений Митюля on 3/23/24.
 //
 
 import UIKit
 
 
-protocol AuthenticationViewInput: AnyObject {
-    func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
+protocol MainViewInput: AnyObject {
+//    func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
 }
 
-final class AuthenticationViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     var output: AuthenticationViewOutput?
     

@@ -1,28 +1,55 @@
 //
-//  LoginViewController.swift
+//  SignUpViewController.swift
 //  Wine Helper
 //
-//  Created by Евгений Митюля on 3/9/24.
+//  Created by Евгений Митюля on 3/17/24.
 //
 
 import UIKit
 
-protocol LoginViewInput: AnyObject {
+protocol SignUpViewInput: AnyObject {
     func changeEyeButtonImage()
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
 }
 
 
-final class LoginViewController: UIViewController {
+final class SignUpViewController: UIViewController {
     
-    var output: LoginViewOutput?
+    var output: SignUpViewOutput?
     
     var passwordTextFieldBottomConstraint: NSLayoutConstraint?
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .white
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentSize = contentView.bounds.size
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.CustomColors.background
+        return view
+    }()
     
     private lazy var topIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: Image.Registration.topIconWine)
+        imageView.tintColor = .lightGray
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private lazy var usernameImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = SystemImage.person.image
         imageView.tintColor = .lightGray
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -44,6 +71,15 @@ final class LoginViewController: UIViewController {
         imageView.tintColor = .lightGray
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    private lazy var usernameTextField: UITextField = {
+        let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
+        textField.setUnderLine()
+        textField.placeholder = "Username"
+        textField.autocapitalizationType = .none
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     private lazy var mailTextField: UITextField = {
@@ -76,7 +112,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -116,9 +152,11 @@ final class LoginViewController: UIViewController {
     }()
     
     private lazy var googleLoginButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton()
         button.setTitle("Continue with Google", for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
+        
+        button.setImage(UIImage(named: Image.Registration.googleIcon), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
@@ -167,9 +205,17 @@ final class LoginViewController: UIViewController {
         self.setupGestureRecognizers()
     }
     
+    deinit {
+        self.removeNotificactionCenterObservers()
+    }
+    
     private func setupNotificactionCenterObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func removeNotificactionCenterObservers() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setupGestureRecognizers() {
@@ -178,44 +224,13 @@ final class LoginViewController: UIViewController {
     }
     
     private func setupDelegates() {
+        self.usernameTextField.delegate = self
         self.mailTextField.delegate = self
         self.passwordTextField.delegate = self
     }
 }
 
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-            return
-        }
-        let keyboardHeight = keyboardFrame.height
-        
-        UIView.animate(withDuration: 0.3) {
-            self.passwordTextFieldBottomConstraint?.constant = -keyboardHeight
-            self.passwordTextFieldBottomConstraint?.isActive = true
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        UIView.animate(withDuration: 0.3) {
-            self.passwordTextFieldBottomConstraint?.isActive = false
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
-}
-
-
-extension LoginViewController: LoginViewInput {
+extension SignUpViewController: SignUpViewInput {
     func changeEyeButtonImage() {
         passwordTextField.isSecureTextEntry.toggle()
         if let showHideButton = passwordTextField.rightView as? UIButton {
@@ -234,7 +249,37 @@ extension LoginViewController: LoginViewInput {
     }
 }
 
-private extension LoginViewController {
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        let keyboardHeight = keyboardFrame.height
+        
+            self.scrollView.contentInset.bottom = keyboardHeight
+        
+    }
+    
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+            self.scrollView.contentInset = .zero
+            
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+}
+
+private extension SignUpViewController {
     @objc private func loginButtonTouchDown() {
         output?.loginButtonTouchDown(loginButton)
     }
@@ -252,10 +297,20 @@ private extension LoginViewController {
     }
 }
 
-private extension LoginViewController {
+private extension SignUpViewController {
     func setupUI() {
         self.view.addSubview(
+            self.scrollView
+        )
+        
+        self.scrollView.addSubview(
+            self.contentView
+        )
+        
+        self.contentView.addSubview(
             self.topIconImageView,
+            self.usernameImageView,
+            self.usernameTextField,
             self.mailImageView,
             self.passwordImageView,
             self.mailTextField,
@@ -267,57 +322,81 @@ private extension LoginViewController {
             self.googleLoginButton
         )
         
-        passwordTextFieldBottomConstraint = passwordTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-        
         NSLayoutConstraint.activate([
-            self.topIconImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            self.topIconImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            self.topIconImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            self.topIconImageView.heightAnchor.constraint(lessThanOrEqualToConstant: 300),
+            self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             
-            self.mailImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            self.contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
+            self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
+            self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
+            self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
+            self.contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
+            
+            self.topIconImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+            self.topIconImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20),
+            self.topIconImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            self.topIconImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
+            
+            
+            self.usernameImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20),
+            self.usernameImageView.widthAnchor.constraint(equalToConstant: 30),
+            self.usernameImageView.heightAnchor.constraint(equalToConstant: 30),
+            self.usernameImageView.centerYAnchor.constraint(equalTo: self.usernameTextField.centerYAnchor, constant: 2),
+            
+            self.mailImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20),
             self.mailImageView.widthAnchor.constraint(equalToConstant: 30),
             self.mailImageView.heightAnchor.constraint(equalToConstant: 30),
             self.mailImageView.centerYAnchor.constraint(equalTo: self.mailTextField.centerYAnchor, constant: 2),
             
-            self.passwordImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            self.passwordImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20),
             self.passwordImageView.widthAnchor.constraint(equalToConstant: 30),
             self.passwordImageView.heightAnchor.constraint(equalToConstant: 30),
             self.passwordImageView.centerYAnchor.constraint(equalTo: self.passwordTextField.centerYAnchor, constant: 2),
             
-            self.mailTextField.topAnchor.constraint(equalTo: self.topIconImageView.bottomAnchor, constant: 20),
+            self.usernameTextField.topAnchor.constraint(equalTo: self.topIconImageView.bottomAnchor, constant: 20),
+            self.usernameTextField.leadingAnchor.constraint(equalTo: self.usernameImageView.trailingAnchor, constant: 20),
+            self.usernameTextField.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            self.usernameTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.mailTextField.topAnchor.constraint(equalTo: self.usernameTextField.bottomAnchor, constant: 5),
             self.mailTextField.leadingAnchor.constraint(equalTo: self.mailImageView.trailingAnchor, constant: 20),
-            self.mailTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            self.mailTextField.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
             self.mailTextField.heightAnchor.constraint(equalToConstant: 50),
             
             self.passwordTextField.topAnchor.constraint(equalTo: self.mailTextField.bottomAnchor, constant: 5),
             self.passwordTextField.leadingAnchor.constraint(equalTo: self.passwordImageView.trailingAnchor, constant: 20),
-            self.passwordTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            self.passwordTextField.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
             self.passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             
+            
             self.loginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 20),
-            self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
-            self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
+            self.loginButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),
+            self.loginButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -30),
             self.loginButton.heightAnchor.constraint(equalToConstant: 40),
             
             self.separatorLabel.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 20),
-            self.separatorLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.separatorLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.separatorLabel.widthAnchor.constraint(equalToConstant: 50),
+            self.separatorLabel.heightAnchor.constraint(equalToConstant: 20),
             
             self.separatorView.centerYAnchor.constraint(equalTo: self.separatorLabel.centerYAnchor),
-            self.separatorView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            self.separatorView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            self.separatorView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20),
+            self.separatorView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
             self.separatorView.heightAnchor.constraint(equalToConstant: 0.5),
             
             self.appleLoginButton.topAnchor.constraint(equalTo: self.separatorLabel.bottomAnchor, constant: 20),
-            self.appleLoginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
-            self.appleLoginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
+            self.appleLoginButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),
+            self.appleLoginButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -30),
             self.appleLoginButton.heightAnchor.constraint(equalToConstant: 40),
             
             self.googleLoginButton.topAnchor.constraint(equalTo: self.appleLoginButton.bottomAnchor, constant: 10),
-            self.googleLoginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
-            self.googleLoginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
-            self.googleLoginButton.heightAnchor.constraint(equalToConstant: 40),
+            self.googleLoginButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),
+            self.googleLoginButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -30),
+            self.googleLoginButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
+            self.googleLoginButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -20),
         ])
         
     }

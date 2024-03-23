@@ -1,27 +1,27 @@
 //
-//  AuthenticationRouter.swift
+//  MainRouter.swift
 //  Wine Helper
 //
-//  Created by Евгений Митюля on 3/15/24.
+//  Created by Евгений Митюля on 3/23/24.
 //
 
 import UIKit
 
-protocol AuthenticationRouterInput {
+protocol MainRouterInput {
     func goToLoginScreen()
     func goToSignUpScreen()
 }
 
-final class AuthenticationRouter {
+final class MainRouter {
     
-    private let viewController: AuthenticationViewController
+    private let viewController: MainViewController
     
-    init(viewController: AuthenticationViewController) {
+    init(viewController: MainViewController) {
         self.viewController = viewController
     }
 }
 
-extension AuthenticationRouter: AuthenticationRouterInput {
+extension MainRouter: MainRouterInput {
     func goToLoginScreen() {
         let viewController = LoginBuilder.setupModule()
         self.viewController.navigationController?.pushViewController(viewController, animated: true)

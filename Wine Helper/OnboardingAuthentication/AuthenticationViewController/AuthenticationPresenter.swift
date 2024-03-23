@@ -6,11 +6,16 @@
 //
 
 
-import Foundation
+import UIKit
 
 protocol AuthenticationViewOutput {
-    func logInButtonTapped()
-    func signUpButtonTapped()
+    func loginButtonTouchDown(_ sender: UIButton)
+    func loginButtonTouchUpInside(_ sender: UIButton)
+    func loginButtonTouchUpOutside(_ sender: UIButton)
+    
+    func signUpButtonTouchDown(_ sender: UIButton)
+    func signUpButtonTouchUpInside(_ sender: UIButton)
+    func signUpButtonTouchUpOutside(_ sender: UIButton)
 }
 
 final class AuthenticationPresenter: AuthenticationViewOutput {
@@ -22,11 +27,29 @@ final class AuthenticationPresenter: AuthenticationViewOutput {
         self.router = router
     }
     
-    func logInButtonTapped() {
-        self.router.goToNextScreen()
+    func loginButtonTouchDown(_ sender: UIButton) {
+        input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 0.8)
     }
     
-    func signUpButtonTapped() {
-        self.router.goToNextScreen()
+    func loginButtonTouchUpInside(_ sender: UIButton) {
+        input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
+        router.goToLoginScreen()
+    }
+    
+    func loginButtonTouchUpOutside(_ sender: UIButton) {
+        input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
+    }
+    
+    func signUpButtonTouchDown(_ sender: UIButton) {
+        input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.systemGray4, alpha: 0.8)
+    }
+    
+    func signUpButtonTouchUpInside(_ sender: UIButton) {
+        input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.background, alpha: 1)
+        router.goToSignUpScreen()
+    }
+    
+    func signUpButtonTouchUpOutside(_ sender: UIButton) {
+        input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.background, alpha: 1)
     }
 }
