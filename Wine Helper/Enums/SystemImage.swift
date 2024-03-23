@@ -14,6 +14,8 @@ enum SystemImage: String {
     case eyeSlash = "eye.slash"
     case eye = "eye"
     case person = "person"
+    case location = "location"
+    case wineglass = "wineglass"
     
     var image: UIImage? {
         return UIImage(systemName: self.rawValue)

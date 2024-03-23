@@ -8,7 +8,14 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    
+    private lazy var userView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
+    
     override func viewDidLoad() {
-        view.backgroundColor = .red
+        view.backgroundColor = .systemGray
     }
 }

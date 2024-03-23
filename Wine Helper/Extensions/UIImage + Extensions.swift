@@ -28,5 +28,15 @@ extension UIImage {
             draw(in: CGRect(origin: .zero, size: size))
         }
     }
+    
+    func resized(to newSize: CGSize) -> UIImage {
+           let horizontalRatio = newSize.width / size.width
+           let verticalRatio = newSize.height / size.height
+           let ratio = min(horizontalRatio, verticalRatio)
+           let newSize = CGSize(width: size.width * ratio, height: size.height * ratio)
+           return UIGraphicsImageRenderer(size: newSize).image { _ in
+               self.draw(in: CGRect(origin: .zero, size: newSize))
+           }
+       }
 }
 

@@ -71,6 +71,7 @@
 		7BDDE7152BAF0FB700B073EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */; };
 		7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7182BAF104600B073EF /* MapViewController.swift */; };
 		7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */; };
+		7BDDE71F2BAF13B300B073EF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7BDDE7182BAF104600B073EF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				7BDDE7092BAEE57000B073EF /* OnboardingSupport */,
 				7BDDE7162BAF0FBF00B073EF /* MainControllers */,
 				7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */,
+				7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */,
 				7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */,
 				7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */,
 				7BA0E0AF2B9C5C0F0061744C /* LaunchScreen.storyboard */,
@@ -449,6 +452,7 @@
 				7BBB7F032BA77C0A000A66AA /* SignUpViewController.swift in Sources */,
 				7BA0E0F62B9E21400061744C /* InsetTextField.swift in Sources */,
 				7B14300B2BA3B7DD000C6C8C /* UIFont + Extensions.swift in Sources */,
+				7BDDE71F2BAF13B300B073EF /* MainTabBarController.swift in Sources */,
 				7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */,
 				7BBB7F062BA77C0A000A66AA /* SignUpRouter.swift in Sources */,
 				7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */,
@@ -620,7 +624,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -648,7 +652,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
