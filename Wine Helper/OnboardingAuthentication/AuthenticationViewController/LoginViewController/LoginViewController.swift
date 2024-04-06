@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol LoginViewInput: AnyObject {
+protocol LoginViewInput: AnyObject, Authentication {
     func changeEyeButtonImage()
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
+    func getLoginUserRequest() -> (LoginUserRequest)?
 }
 
-
-final class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController, Authentication {
     
     var output: LoginViewOutput?
     
@@ -231,6 +231,23 @@ extension LoginViewController: LoginViewInput {
     
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat) {
         sender.backgroundColor = color.withAlphaComponent(alpha)
+    }
+    
+    func getLoginUserRequest() -> (LoginUserRequest)? {
+        guard let mail = mailTextField.text,
+              let password = passwordTextField.text,
+              !mail.isEmpty,
+              !password.isEmpty
+        else {
+            return nil
+        }
+        return LoginUserRequest(email: mail, password: password)
+    }
+    
+    func checkAuth() {
+        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.checkAuthentication()
+        }
     }
 }
 

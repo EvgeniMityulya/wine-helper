@@ -34,6 +34,21 @@ final class LoginPresenter: LoginViewOutput {
     
     func loginButtonTouchUpInside(_ sender: UIButton) {
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
+        
+        guard let userRequest = input.getLoginUserRequest() else {
+            print("Пожалуйста, заполните все поля.")
+            return
+        }
+        
+        FirebaseManager.shared.signIn(with: userRequest) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            self.input.checkAuth()
+            print("Login success")
+        }
     }
     
     func loginButtonTouchUpOutside(_ sender: UIButton) {

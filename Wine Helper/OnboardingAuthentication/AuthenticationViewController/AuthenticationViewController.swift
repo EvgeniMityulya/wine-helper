@@ -99,7 +99,6 @@ extension AuthenticationViewController: AuthenticationViewInput {
     }
 }
 
-
 private extension AuthenticationViewController {
     @objc private func logInButtonTouchDown() {
         output?.loginButtonTouchDown(logInButton)

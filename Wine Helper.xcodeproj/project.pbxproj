@@ -55,6 +55,10 @@
 		7BA0E0FA2B9E2E750061744C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F92B9E2E750061744C /* Image.swift */; };
 		7BA0E0FC2B9E33DA0061744C /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0FB2B9E33DA0061744C /* UIImage + Extensions.swift */; };
 		7BA0E0FE2B9E344A0061744C /* UIButton + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0FD2B9E344A0061744C /* UIButton + Extensions.swift */; };
+		7BA688B52BAF46A600F941EA /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688B42BAF46A600F941EA /* FirebaseManager.swift */; };
+		7BA688B82BAF48EF00F941EA /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688B72BAF48EF00F941EA /* RegisterUserRequest.swift */; };
+		7BA688BB2BAF5A2300F941EA /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688BA2BAF5A2300F941EA /* LoginUserRequest.swift */; };
+		7BA688C02BB040FC00F941EA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688BF2BB040FC00F941EA /* Authentication.swift */; };
 		7BBB7EFD2BA77960000A66AA /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7EFC2BA77960000A66AA /* UIView + Extensions.swift */; };
 		7BBB7F032BA77C0A000A66AA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7F002BA77C0A000A66AA /* SignUpViewController.swift */; };
 		7BBB7F042BA77C0A000A66AA /* SignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7F012BA77C0A000A66AA /* SignUpBuilder.swift */; };
@@ -98,6 +102,10 @@
 		7BA0E0F92B9E2E750061744C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7BA0E0FB2B9E33DA0061744C /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		7BA0E0FD2B9E344A0061744C /* UIButton + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extensions.swift"; sourceTree = "<group>"; };
+		7BA688B42BAF46A600F941EA /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		7BA688B72BAF48EF00F941EA /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
+		7BA688BA2BAF5A2300F941EA /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
+		7BA688BF2BB040FC00F941EA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		7BBB7EFC2BA77960000A66AA /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		7BBB7EFF2BA77C0A000A66AA /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		7BBB7F002BA77C0A000A66AA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -191,14 +199,10 @@
 				7BA0E1032B9E37C80061744C /* OnboardingAuthentication */,
 				7BDDE7092BAEE57000B073EF /* OnboardingSupport */,
 				7BDDE7162BAF0FBF00B073EF /* MainControllers */,
-				7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */,
 				7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */,
-				7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */,
-				7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */,
-				7BA0E0AF2B9C5C0F0061744C /* LaunchScreen.storyboard */,
-				7BA0E1072B9E38970061744C /* Plists */,
+				7BA688BC2BAF606D00F941EA /* Resources */,
 				7BA0E1052B9E37F10061744C /* Fonts */,
-				7BDDE70A2BAF004700B073EF /* NetworkManager.swift */,
+				7BA688B62BAF48C600F941EA /* Managers */,
 			);
 			path = "Wine Helper";
 			sourceTree = "<group>";
@@ -235,6 +239,8 @@
 		7BA0E1032B9E37C80061744C /* OnboardingAuthentication */ = {
 			isa = PBXGroup;
 			children = (
+				7BA688BF2BB040FC00F941EA /* Authentication.swift */,
+				7BA688B92BAF51C800F941EA /* Models */,
 				7BA0E1042B9E37DB0061744C /* AuthenticationViewController */,
 			);
 			path = OnboardingAuthentication;
@@ -268,6 +274,36 @@
 				7BA0E0BA2B9C60EB0061744C /* GoogleService-Info.plist */,
 			);
 			name = Plists;
+			sourceTree = "<group>";
+		};
+		7BA688B62BAF48C600F941EA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7BDDE70A2BAF004700B073EF /* NetworkManager.swift */,
+				7BA688B42BAF46A600F941EA /* FirebaseManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7BA688B92BAF51C800F941EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7BA688B72BAF48EF00F941EA /* RegisterUserRequest.swift */,
+				7BA688BA2BAF5A2300F941EA /* LoginUserRequest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7BA688BC2BAF606D00F941EA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */,
+				7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */,
+				7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */,
+				7BA0E0AF2B9C5C0F0061744C /* LaunchScreen.storyboard */,
+				7BA0E1072B9E38970061744C /* Plists */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		7BBB7EFE2BA77C0A000A66AA /* SignUpViewController */ = {
@@ -445,6 +481,7 @@
 				7BDDE70B2BAF004700B073EF /* NetworkManager.swift in Sources */,
 				7BA0E0A92B9C5C0D0061744C /* LoginViewController.swift in Sources */,
 				7BDDE7022BAEE45000B073EF /* MainViewController.swift in Sources */,
+				7BA688B82BAF48EF00F941EA /* RegisterUserRequest.swift in Sources */,
 				7BA0E0FA2B9E2E750061744C /* Image.swift in Sources */,
 				7BA0E0FC2B9E33DA0061744C /* UIImage + Extensions.swift in Sources */,
 				7BA0E0FE2B9E344A0061744C /* UIButton + Extensions.swift in Sources */,
@@ -452,11 +489,13 @@
 				7BBB7F032BA77C0A000A66AA /* SignUpViewController.swift in Sources */,
 				7BA0E0F62B9E21400061744C /* InsetTextField.swift in Sources */,
 				7B14300B2BA3B7DD000C6C8C /* UIFont + Extensions.swift in Sources */,
+				7BA688BB2BAF5A2300F941EA /* LoginUserRequest.swift in Sources */,
 				7BDDE71F2BAF13B300B073EF /* MainTabBarController.swift in Sources */,
 				7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */,
 				7BBB7F062BA77C0A000A66AA /* SignUpRouter.swift in Sources */,
 				7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */,
 				7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */,
+				7BA688B52BAF46A600F941EA /* FirebaseManager.swift in Sources */,
 				7BDDE7152BAF0FB700B073EF /* ProfileViewController.swift in Sources */,
 				7BBB7F052BA77C0A000A66AA /* SignUpPresenter.swift in Sources */,
 				7B1430072BA36A59000C6C8C /* UIColor + Extensions.swift in Sources */,
@@ -474,6 +513,7 @@
 				7BBB7F042BA77C0A000A66AA /* SignUpBuilder.swift in Sources */,
 				7BBB7EFD2BA77960000A66AA /* UIView + Extensions.swift in Sources */,
 				7B14300F2BA3C645000C6C8C /* AuthenticationBuilder.swift in Sources */,
+				7BA688C02BB040FC00F941EA /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

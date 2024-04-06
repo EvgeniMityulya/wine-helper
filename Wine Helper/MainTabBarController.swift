@@ -9,14 +9,13 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupControllersToNavigation()
+        setupControllers()
         setupUI()
     }
     
-    private func setupControllersToNavigation() {
+    private func setupControllers() {
         let mapViewController = MapViewController()
         let catalogViewController = CatalogViewController()
         let profileViewController = ProfileViewController()
@@ -64,15 +63,15 @@ final class MainTabBarController: UITabBarController {
         }
         
         self.tabBar.items?[0].image = SystemImage.location.image
-        self.tabBar.items?[0].title = "Карта"
+        self.tabBar.items?[0].title = "Map"
         
         self.tabBar.items?[1].image = UIImage(named: "wineglass")?
                                         .withRenderingMode(.alwaysOriginal)
                                         .resized(to: CGSize(width: 28, height: 28)
                                         )
-        self.tabBar.items?[1].title = "Каталог"
+        self.tabBar.items?[1].title = "Catalog"
         
         self.tabBar.items?[2].image = SystemImage.person.image
-        self.tabBar.items?[2].title = "Пользователь"
+        self.tabBar.items?[2].title = "Profile"
     }
 }

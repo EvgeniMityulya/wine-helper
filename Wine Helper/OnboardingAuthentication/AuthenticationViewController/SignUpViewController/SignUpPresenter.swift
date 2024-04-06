@@ -36,36 +36,24 @@ final class SignUpPresenter: SignUpViewOutput {
     func signUpButtonTouchUpInside(_ sender: UIButton) {
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
         
-        guard let (username, mail) = input.getUsernameAndMail() else {
+        guard let userRequest = input.getRegisterUserRequest() else {
             print("Пожалуйста, заполните все поля.")
             return
         }
         
-//        Auth.auth().fetchSignInMethods(forEmail: mail) { (methods, error) in
-//            if let error = error {
-//                print("Error fetching sign-in methods: \(error.localizedDescription)")
-//                return
-//            }
-//            
-//            guard let methods = methods else {
-//                print("No sign-in methods available.")
-//                return
-//            }
-//            
-//            if methods.contains(EmailAuthProviderID) {
-//                // Адрес электронной почты уже зарегистрирован
-//                print("Email already registered. Please sign in.")
-//                return
-//            }
-//            
-//            // Отправляем ссылку аутентификации на электронную почту
-//            sendSignInLink(to: mail, withUsername: username)
-//            print("Sign-in link sent to email: \(mail)")
-//        }
+        FirebaseManager.shared.registerUser(with: userRequest) { isRegistered, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            self.input.checkAuth()
+            print("Registered success")
+        }
+
     }
     
     func signUpButtonTouchUpOutside(_ sender: UIButton) {
-        print(3)
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
     }
 }

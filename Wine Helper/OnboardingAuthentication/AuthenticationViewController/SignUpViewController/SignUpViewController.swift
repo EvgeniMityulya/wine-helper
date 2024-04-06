@@ -7,13 +7,11 @@
 
 import UIKit
 
-protocol SignUpViewInput: AnyObject {
+protocol SignUpViewInput: AnyObject, Authentication {
     func changeEyeButtonImage()
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
-    func isEmptyFields() -> Bool
-    func getUsernameAndMail() -> (String, String)?
+    func getRegisterUserRequest() -> (RegisterUserRequest)?
 }
-
 
 final class SignUpViewController: UIViewController {
     
@@ -79,6 +77,8 @@ final class SignUpViewController: UIViewController {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
         textField.placeholder = "Username"
+        textField.returnKeyType = .done
+        textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -88,7 +88,11 @@ final class SignUpViewController: UIViewController {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
         textField.placeholder = "Email"
+        textField.returnKeyType = .done
+        textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
+        textField.textContentType = .emailAddress
+        textField.keyboardType = .emailAddress
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -97,9 +101,11 @@ final class SignUpViewController: UIViewController {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
         textField.placeholder = "Password"
-        textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isSecureTextEntry = true
+        textField.returnKeyType = .done
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+//        textField.isSecureTextEntry = true
         
         let showHideButton = UIButton(type: .custom)
         showHideButton.setImage(SystemImage.eyeSlash.image, for: .normal)
@@ -167,7 +173,6 @@ final class SignUpViewController: UIViewController {
             button.setImage(scaledGoogleIconImage, for: .normal)
         }
         button.contentMode = .scaleAspectFit
-        
         
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
@@ -250,21 +255,17 @@ extension SignUpViewController: SignUpViewInput {
         sender.backgroundColor = color.withAlphaComponent(alpha)
     }
     
-    func isEmptyFields() -> Bool {
-        guard let username = usernameTextField.text, let mail = mailTextField.text else {
-            return true // Возвращаем true, если хотя бы одно из полей пусто
-        }
-        return username.isEmpty || mail.isEmpty
-    }
-    
-    func getUsernameAndMail() -> (String, String)? {
+    func getRegisterUserRequest() -> (RegisterUserRequest)? {
         guard let username = usernameTextField.text,
               let mail = mailTextField.text,
+              let password = passwordTextField.text,
               !username.isEmpty,
-              !mail.isEmpty else {
+              !mail.isEmpty,
+              !password.isEmpty
+        else {
             return nil
         }
-        return (username, mail)
+        return RegisterUserRequest(username: username, email: mail, password: password)
     }
 }
 

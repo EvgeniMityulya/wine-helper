@@ -9,7 +9,6 @@ import UIKit
 
 final class CatalogViewController: UIViewController {
     override func viewDidLoad() {
-        view.backgroundColor = .black
+        view.backgroundColor = .systemGray 
     }
 }
-
