@@ -76,6 +76,7 @@
 		7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7182BAF104600B073EF /* MapViewController.swift */; };
 		7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */; };
 		7BDDE71F2BAF13B300B073EF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */; };
+		849C4C382BC2AFCA00DC0F83 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C4C372BC2AFCA00DC0F83 /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +122,7 @@
 		7BDDE7182BAF104600B073EF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 		7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		849C4C372BC2AFCA00DC0F83 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 			children = (
 				7BDDE70A2BAF004700B073EF /* NetworkManager.swift */,
 				7BA688B42BAF46A600F941EA /* FirebaseManager.swift */,
+				849C4C372BC2AFCA00DC0F83 /* test.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				7BDDE7152BAF0FB700B073EF /* ProfileViewController.swift in Sources */,
 				7BBB7F052BA77C0A000A66AA /* SignUpPresenter.swift in Sources */,
 				7B1430072BA36A59000C6C8C /* UIColor + Extensions.swift in Sources */,
+				849C4C382BC2AFCA00DC0F83 /* test.swift in Sources */,
 				7B1430112BA3C842000C6C8C /* AuthenticationRouter.swift in Sources */,
 				7B1430132BA3C89E000C6C8C /* LoginPresenter.swift in Sources */,
 				7B14300D2BA3C638000C6C8C /* AuthenticationPresenter.swift in Sources */,
