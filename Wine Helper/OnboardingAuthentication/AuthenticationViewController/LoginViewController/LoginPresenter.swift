@@ -40,7 +40,7 @@ final class LoginPresenter: LoginViewOutput {
             return
         }
         
-        FirebaseManager.shared.signIn(with: userRequest) { error in
+        FirebaseManager.shared.signInEmail(with: userRequest) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return

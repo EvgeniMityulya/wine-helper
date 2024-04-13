@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import GoogleSignIn
 
 final class FirebaseManager {
     
@@ -16,14 +17,14 @@ final class FirebaseManager {
     
     private init() {}
     
-    /// A method to register a the iser
+    /// A method to register a the user with email
     /// - Parameters:
     ///   - userRequest: The user information (username, email, password)
     ///   - completion: A complition with 2 values
     ///   - Bool: Is user registered yet
     ///   - Error?: Firebase errors
-    public func registerUser(with userRequest: RegisterUserRequest,
-                      completion: @escaping (Bool, Error?) -> Void) {
+    public func registerUserEmail(with userRequest: RegisterUserRequest,
+                                  completion: @escaping (Bool, Error?) -> Void) {
         let username = userRequest.username
         let email = userRequest.email
         let password = userRequest.password
@@ -59,8 +60,57 @@ final class FirebaseManager {
         }
     }
     
-    public func signIn(with userRequest: LoginUserRequest,
-                      completion: @escaping (Error?) -> Void) {
+    /// A method to register a the user with Google
+    /// - Parameters:
+    ///   - withSignInResult: User auth Google data
+    ///   - completion: A complition with 2 values
+    ///   - Bool: Is user registered yet
+    ///   - Error?: Firebase errors
+    public func registerUserGoogle(with withSignInResult: GIDSignInResult?,
+                                   completion: @escaping (Bool, Error?) -> Void) {
+        
+        guard let user = withSignInResult?.user, let idToken = user.idToken?.tokenString
+        else {
+            print("Error user and token")
+            return
+        }
+
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+        
+        Auth.auth().signIn(with: credential) { result, error in
+            if let error = error {
+                print("Error signing in with Google: \(error.localizedDescription)")
+                completion(false, error)
+                return
+            }
+            
+            completion(true, nil)
+        }
+    }
+    
+    /// A method to register a the user with Apple
+    /// - Parameters:
+    ///   - withSignInResult: User auth Google data
+    ///   - completion: A complition with 2 values
+    ///   - Bool: Is user registered yet
+    ///   - Error?: Firebase errors
+    public func registerUserApple(with firebaseCredential: AuthCredential,
+                                   completion: @escaping (Bool, Error?) -> Void) {
+        
+        
+        Auth.auth().signIn(with: firebaseCredential) { result, error in
+            if let error = error {
+                print("Error signing in with Google: \(error.localizedDescription)")
+                completion(false, error)
+                return
+            }
+            
+            completion(true, nil)
+        }
+    }
+    
+    public func signInEmail(with userRequest: LoginUserRequest,
+                            completion: @escaping (Error?) -> Void) {
         let email = userRequest.email
         let password = userRequest.password
         
