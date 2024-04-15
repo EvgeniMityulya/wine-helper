@@ -11,17 +11,17 @@ final class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupControllers()
-        setupUI()
+        self.setupControllers()
+        self.setupUI()
     }
     
     private func setupControllers() {
-        let mapViewController = MapViewController()
-        let catalogViewController = CatalogViewController()
+        let mapViewController = MapBuilder.setupModule()
+        let catalogViewController = CatalogBuilder.setupModule()
         let profileViewController = ProfileViewController()
         
-        let navMapViewController = UINavigationController(rootViewController: mapViewController)
-        let navCatalogViewController = UINavigationController(rootViewController: catalogViewController)
+        let navMapViewController = mapViewController
+        let navCatalogViewController = catalogViewController
         let navProfileViewController = UINavigationController(rootViewController: profileViewController)
         
         self.viewControllers = [

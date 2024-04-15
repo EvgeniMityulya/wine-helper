@@ -1,5 +1,5 @@
 {
-  "originHash" : "832b27fca2c62a0b784019c7a9ce34c9cff4450e3186f660a7753a51d472e45f",
+  "originHash" : "4dcdb4ce6383a7788bcaabb062ff2a1f82a8f3c5c7259b80a888940fb1f0b0d1",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -125,15 +125,6 @@
       "state" : {
         "revision" : "65e8f29b2d63c4e38e736b25c27b83e012159be8",
         "version" : "1.25.2"
-      }
-    },
-    {
-      "identity" : "yandexmapsmobile",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/c-villain/YandexMapsMobile.git",
-      "state" : {
-        "revision" : "6d007d29b9a4106ae13354b76c278ee4a6daa417",
-        "version" : "4.5.1"
       }
     }
   ],
