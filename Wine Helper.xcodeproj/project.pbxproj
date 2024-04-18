@@ -25,7 +25,6 @@
 		7BA0E0A92B9C5C0D0061744C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A82B9C5C0D0061744C /* LoginViewController.swift */; };
 		7BA0E0AE2B9C5C0F0061744C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */; };
 		7BA0E0B12B9C5C0F0061744C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0AF2B9C5C0F0061744C /* LaunchScreen.storyboard */; };
-		7BA0E0BB2B9C60EB0061744C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0BA2B9C60EB0061744C /* GoogleService-Info.plist */; };
 		7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F32B9C6FFF0061744C /* AuthenticationViewController.swift */; };
 		7BA0E0F62B9E21400061744C /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F52B9E21400061744C /* InsetTextField.swift */; };
 		7BA0E0F82B9E2C630061744C /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0E0F72B9E2C620061744C /* OpenSans.ttf */; };
@@ -51,6 +50,9 @@
 		7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7182BAF104600B073EF /* MapViewController.swift */; };
 		7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */; };
 		7BDDE71F2BAF13B300B073EF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */; };
+		849129F32BCA9E7500469E2C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 849129F22BCA9E7500469E2C /* GoogleSignIn */; };
+		849129F52BCA9E7500469E2C /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 849129F42BCA9E7500469E2C /* GoogleSignInSwift */; };
+		849129F72BCA9F9700469E2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 849129F62BCA9F9700469E2C /* GoogleService-Info.plist */; };
 		849C4C3B2BC2B2D300DC0F83 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 849C4C3A2BC2B2D300DC0F83 /* FirebaseAnalytics */; };
 		849C4C3D2BC2B2D300DC0F83 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 849C4C3C2BC2B2D300DC0F83 /* FirebaseAnalyticsOnDeviceConversion */; };
 		849C4C3F2BC2B2D300DC0F83 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 849C4C3E2BC2B2D300DC0F83 /* FirebaseAnalyticsSwift */; };
@@ -83,7 +85,6 @@
 		7BA0E0AD2B9C5C0F0061744C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BA0E0B02B9C5C0F0061744C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BA0E0B22B9C5C0F0061744C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7BA0E0BA2B9C60EB0061744C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7BA0E0F32B9C6FFF0061744C /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		7BA0E0F52B9E21400061744C /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		7BA0E0F72B9E2C620061744C /* OpenSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSans.ttf; sourceTree = "<group>"; };
@@ -109,6 +110,8 @@
 		7BDDE7182BAF104600B073EF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 		7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		849129F62BCA9F9700469E2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		849129F82BCAB33700469E2C /* Wine Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wine Helper.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,12 +121,15 @@
 			files = (
 				849C4C3F2BC2B2D300DC0F83 /* FirebaseAnalyticsSwift in Frameworks */,
 				849C4C3B2BC2B2D300DC0F83 /* FirebaseAnalytics in Frameworks */,
+				849129F32BCA9E7500469E2C /* GoogleSignIn in Frameworks */,
+				849129F52BCA9E7500469E2C /* GoogleSignInSwift in Frameworks */,
 				849C4C3D2BC2B2D300DC0F83 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				849C4C462BC2B3A100DC0F83 /* Alamofire in Frameworks */,
 				849C4C482BC2B3A100DC0F83 /* AlamofireDynamic in Frameworks */,
 				849C4C4D2BC2B42100DC0F83 /* FirebaseFirestore in Frameworks */,
 				849C4C432BC2B2D300DC0F83 /* FirebaseAppCheck in Frameworks */,
 				849C4C412BC2B2D300DC0F83 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				7B9C8B8B2BCA994E00391CE1 /* YandexMapsMobile in Frameworks */,
 				849C4C4B2BC2B41C00DC0F83 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +168,7 @@
 		7BA0E0A32B9C5C0D0061744C /* Wine Helper */ = {
 			isa = PBXGroup;
 			children = (
+				849129F82BCAB33700469E2C /* Wine Helper.entitlements */,
 				7BA0E1022B9E37B50061744C /* Enums */,
 				7BA0E1012B9E37A70061744C /* CustomComponents */,
 				7BA0E0FF2B9E37840061744C /* Extensions */,
@@ -240,8 +247,8 @@
 		7BA0E1072B9E38970061744C /* Plists */ = {
 			isa = PBXGroup;
 			children = (
+				849129F62BCA9F9700469E2C /* GoogleService-Info.plist */,
 				7BA0E0B22B9C5C0F0061744C /* Info.plist */,
-				7BA0E0BA2B9C60EB0061744C /* GoogleService-Info.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -377,6 +384,9 @@
 				849C4C472BC2B3A100DC0F83 /* AlamofireDynamic */,
 				849C4C4A2BC2B41C00DC0F83 /* FirebaseAuth */,
 				849C4C4C2BC2B42100DC0F83 /* FirebaseFirestore */,
+				7B9C8B8A2BCA994E00391CE1 /* YandexMapsMobile */,
+				849129F22BCA9E7500469E2C /* GoogleSignIn */,
+				849129F42BCA9E7500469E2C /* GoogleSignInSwift */,
 			);
 			productName = "Wine Helper";
 			productReference = 7BA0E0A12B9C5C0D0061744C /* Wine Helper.app */;
@@ -409,6 +419,8 @@
 			packageReferences = (
 				849C4C392BC2B2D300DC0F83 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				849C4C442BC2B3A100DC0F83 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7B9C8B892BCA994E00391CE1 /* XCRemoteSwiftPackageReference "YandexMapsMobile" */,
+				849129F12BCA9E7500469E2C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 7BA0E0A22B9C5C0D0061744C /* Products */;
 			projectDirPath = "";
@@ -425,7 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BA0E0B12B9C5C0F0061744C /* LaunchScreen.storyboard in Resources */,
-				7BA0E0BB2B9C60EB0061744C /* GoogleService-Info.plist in Resources */,
+				849129F72BCA9F9700469E2C /* GoogleService-Info.plist in Resources */,
 				7BA0E0AE2B9C5C0F0061744C /* Assets.xcassets in Resources */,
 				7BA0E0F82B9E2C630061744C /* OpenSans.ttf in Resources */,
 			);
@@ -619,6 +631,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Wine Helper/Wine Helper.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SDD6GS4SZP;
@@ -647,6 +660,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Wine Helper/Wine Helper.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SDD6GS4SZP;
@@ -694,6 +708,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7B9C8B892BCA994E00391CE1 /* XCRemoteSwiftPackageReference "YandexMapsMobile" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/c-villain/YandexMapsMobile.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
+		849129F12BCA9E7500469E2C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
 		849C4C392BC2B2D300DC0F83 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -713,6 +743,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7B9C8B8A2BCA994E00391CE1 /* YandexMapsMobile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B9C8B892BCA994E00391CE1 /* XCRemoteSwiftPackageReference "YandexMapsMobile" */;
+			productName = YandexMapsMobile;
+		};
+		849129F22BCA9E7500469E2C /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 849129F12BCA9E7500469E2C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		849129F42BCA9E7500469E2C /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 849129F12BCA9E7500469E2C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		849C4C3A2BC2B2D300DC0F83 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 849C4C392BC2B2D300DC0F83 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

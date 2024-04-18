@@ -16,6 +16,7 @@ protocol SignUpViewInput: AnyObject, Authentication {
 final class SignUpViewController: UIViewController {
     
     var output: SignUpViewOutput?
+    var currentNonce: String?
     
     var passwordTextFieldBottomConstraint: NSLayoutConstraint?
     
@@ -105,7 +106,7 @@ final class SignUpViewController: UIViewController {
         textField.returnKeyType = .done
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
-//        textField.isSecureTextEntry = true
+        //        textField.isSecureTextEntry = true
         
         let showHideButton = UIButton(type: .custom)
         showHideButton.setImage(SystemImage.eyeSlash.image, for: .normal)
@@ -156,6 +157,8 @@ final class SignUpViewController: UIViewController {
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.masksToBounds = true
         
+        button.addTarget(self, action: #selector(signUpAppleButtonTouchUpInside), for: .touchUpInside)
+        
         return button
     }()
     
@@ -181,6 +184,8 @@ final class SignUpViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.masksToBounds = true
+        
+        button.addTarget(self, action: #selector(signUpGoogleButtonTouchUpInside), for: .touchUpInside)
         
         return button
     }()
@@ -307,6 +312,14 @@ private extension SignUpViewController {
     
     @objc private func signUpButtonTouchUpOutside() {
         output?.signUpButtonTouchUpOutside(signUpButton)
+    }
+    
+    @objc private func signUpGoogleButtonTouchUpInside() {
+        output?.signUpGoogleButtonTouchUpInside(googleLoginButton)
+    }
+    
+    @objc private func signUpAppleButtonTouchUpInside() {
+        output?.signUpAppleButtonTouchUpInside(appleLoginButton)
     }
     
     @objc private func togglePasswordVisibility(_ sender: UIButton) {
