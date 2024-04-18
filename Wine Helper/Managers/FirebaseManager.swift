@@ -77,6 +77,28 @@ final class FirebaseManager {
 
         let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
         
+        UserDefaultsManager.idToken = idToken
+        UserDefaultsManager.userAccessToken = user.accessToken.tokenString
+        
+        Auth.auth().signIn(with: credential) { result, error in
+            if let error = error {
+                print("Error signing in with Google: \(error.localizedDescription)")
+                completion(false, error)
+                return
+            }
+            
+            completion(true, nil)
+        }
+    }
+    
+    /// A method to log in user with Google
+    /// - Parameters:
+    ///   - credential: Current user Google auth credential data
+    ///   - completion: A complition with 2 values
+    ///   - Bool: Is user registered yet
+    ///   - Error?: Firebase errors
+    public func logUserInWithGoogle(credential: AuthCredential, completion: @escaping (Bool, Error?) -> Void) {
+        
         Auth.auth().signIn(with: credential) { result, error in
             if let error = error {
                 print("Error signing in with Google: \(error.localizedDescription)")

@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
+import FirebaseAuth
+import FirebaseCore
 
 final class ProfileViewController: UIViewController {
     
@@ -26,6 +30,9 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
+    override func viewDidAppear(_ animated: Bool) {
+        print(Auth.auth().currentUser?.email ?? "0", Auth.auth().currentUser?.displayName ?? "1")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -77,7 +77,7 @@ final class SignUpPresenter: SignUpViewOutput {
             }
             
             FirebaseManager.shared.registerUserGoogle(with: result) { isRegistered, error in
-                if let error = error {
+                if let error = error  {
                     print(error.localizedDescription)
                     return
                 }

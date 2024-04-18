@@ -167,7 +167,7 @@ final class SignUpViewController: UIViewController {
         button.setTitle("Continue with Google", for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
         
-//        button.setImage(UIImage(named: Image.Registration.googleIcon), for: .normal)
+        //        button.setImage(UIImage(named: Image.Registration.googleIcon), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
@@ -268,8 +268,25 @@ extension SignUpViewController: SignUpViewInput {
               !mail.isEmpty,
               !password.isEmpty
         else {
+            TextValidationManager.shared.showAlert(vc: self, with: "Invalid Input", message: "Please enter all the required fields.")
             return nil
         }
+        
+        guard TextValidationManager.shared.isValidUsername(username) else {
+            TextValidationManager.shared.showAlert(vc: self, with: "Invalid Username", message: "Please enter a valid username.")
+            return nil
+        }
+        
+        guard TextValidationManager.shared.isValidEmail(mail) else {
+            TextValidationManager.shared.showAlert(vc: self, with: "Invalid Email", message: "Please enter a valid email address.")
+            return nil
+        }
+        
+        guard TextValidationManager.shared.isValidPassword(password) else {
+            TextValidationManager.shared.showAlert(vc: self, with: "Invalid Password", message: "Please enter a valid password.")
+            return nil
+        }
+        
         return RegisterUserRequest(username: username, email: mail, password: password)
     }
 }

@@ -137,6 +137,8 @@ final class LoginViewController: UIViewController, Authentication {
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.masksToBounds = true
         
+        button.addTarget(self, action: #selector(logInGoogleButtonTouchUpInside), for: .touchUpInside)
+        
         return button
     }()
     
@@ -239,8 +241,20 @@ extension LoginViewController: LoginViewInput {
               !mail.isEmpty,
               !password.isEmpty
         else {
+            TextValidationManager.shared.showAlert(vc: self, with: "Invalid Input", message: "Please enter all the required fields.")
             return nil
         }
+        
+        guard TextValidationManager.shared.isValidEmail(mail) else {
+            TextValidationManager.shared.showAlert(vc: self, with: "Invalid Email", message: "Please enter a valid email address.")
+            return nil
+        }
+        
+        guard TextValidationManager.shared.isValidPassword(password) else {
+            TextValidationManager.shared.showAlert(vc: self, with: "Invalid Password", message: "Please enter a valid password.")
+            return nil
+        }
+        
         return LoginUserRequest(email: mail, password: password)
     }
     
@@ -257,7 +271,7 @@ private extension LoginViewController {
     }
     
     @objc private func loginButtonTouchUpInside() {
-        output?.loginButtonTouchUpInside(loginButton)
+        output?.loginButtonTouchUpInside(self, loginButton)
     }
     
     @objc private func loginButtonTouchUpOutside() {
@@ -266,6 +280,10 @@ private extension LoginViewController {
     
     @objc private func togglePasswordVisibility(_ sender: UIButton) {
         output?.eyeButtonTapped()
+    }
+    
+    @objc private func logInGoogleButtonTouchUpInside() {
+        output?.loginGoogleButtonTouchUpInside(googleLoginButton)
     }
 }
 
