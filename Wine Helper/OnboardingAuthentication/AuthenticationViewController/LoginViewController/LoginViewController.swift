@@ -116,7 +116,7 @@ final class LoginViewController: UIViewController, Authentication {
     }()
     
     private lazy var googleLoginButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton()
         button.setTitle("Continue with Google", for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false

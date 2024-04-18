@@ -16,7 +16,7 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func setupControllers() {
-        let mapViewController = MapViewController()
+        let mapViewController = MapBuilder.setupModule()
         let catalogViewController = CatalogBuilder.setupModule()
         let profileViewController = ProfileViewController()
         
