@@ -159,7 +159,6 @@
 			children = (
 				7BA0E0A32B9C5C0D0061744C /* Wine Helper */,
 				7BA0E0A22B9C5C0D0061744C /* Products */,
-				849C4C492BC2B41C00DC0F83 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -377,13 +376,6 @@
 				7B9C8B872BCA88F300391CE1 /* CatalogRouter.swift */,
 			);
 			path = CatalogViewController;
-			sourceTree = "<group>";
-		};
-		849C4C492BC2B41C00DC0F83 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
