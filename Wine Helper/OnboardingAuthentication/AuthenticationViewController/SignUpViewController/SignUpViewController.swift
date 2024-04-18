@@ -105,7 +105,7 @@ final class SignUpViewController: UIViewController {
         textField.returnKeyType = .done
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
-//        textField.isSecureTextEntry = true
+        textField.isSecureTextEntry = true
         
         let showHideButton = UIButton(type: .custom)
         showHideButton.setImage(SystemImage.eyeSlash.image, for: .normal)
@@ -164,7 +164,7 @@ final class SignUpViewController: UIViewController {
         button.setTitle("Continue with Google", for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
         
-        button.setImage(UIImage(named: Image.Registration.googleIcon), for: .normal)
+//        button.setImage(UIImage(named: Image.Registration.googleIcon), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
