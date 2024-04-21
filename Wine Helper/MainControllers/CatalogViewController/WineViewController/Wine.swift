@@ -10,6 +10,7 @@ import Foundation
 struct Wine {
     let brand: String
     let name: String
+    let category: String
     let description: String
     let alcoholPl: Float
     let sweetness: Int

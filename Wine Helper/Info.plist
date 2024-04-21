@@ -16,6 +16,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans.ttf</string>
+		<string>PlayfairDisplay.ttf</string>
+		<string>RobotoFlex.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

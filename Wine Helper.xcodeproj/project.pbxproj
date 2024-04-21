@@ -21,6 +21,10 @@
 		7B92DF2A2BD5137D00EC9788 /* WineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF272BD5137C00EC9788 /* WineBuilder.swift */; };
 		7B92DF2B2BD5137D00EC9788 /* WineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF282BD5137D00EC9788 /* WineRouter.swift */; };
 		7B92DF2D2BD518B100EC9788 /* Wine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF2C2BD518B100EC9788 /* Wine.swift */; };
+		7B92DF2F2BD526C500EC9788 /* PlayfairDisplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B92DF2E2BD526C500EC9788 /* PlayfairDisplay.ttf */; };
+		7B92DF312BD5282400EC9788 /* NSAttributedString + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF302BD5282400EC9788 /* NSAttributedString + Extension.swift */; };
+		7B92DF352BD52AEE00EC9788 /* RobotoFlex.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B92DF342BD52AEE00EC9788 /* RobotoFlex.ttf */; };
+		7B92DF372BD5336000EC9788 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF362BD5336000EC9788 /* UIStackView + Extensions.swift */; };
 		7B9C8B822BCA82E000391CE1 /* CatalogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B812BCA82E000391CE1 /* CatalogSection.swift */; };
 		7B9C8B842BCA88D600391CE1 /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B832BCA88D600391CE1 /* CatalogPresenter.swift */; };
 		7B9C8B862BCA88EB00391CE1 /* CatalogBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B852BCA88EB00391CE1 /* CatalogBuilder.swift */; };
@@ -92,6 +96,10 @@
 		7B92DF272BD5137C00EC9788 /* WineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineBuilder.swift; sourceTree = "<group>"; };
 		7B92DF282BD5137D00EC9788 /* WineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineRouter.swift; sourceTree = "<group>"; };
 		7B92DF2C2BD518B100EC9788 /* Wine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wine.swift; sourceTree = "<group>"; };
+		7B92DF2E2BD526C500EC9788 /* PlayfairDisplay.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlayfairDisplay.ttf; sourceTree = "<group>"; };
+		7B92DF302BD5282400EC9788 /* NSAttributedString + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString + Extension.swift"; sourceTree = "<group>"; };
+		7B92DF342BD52AEE00EC9788 /* RobotoFlex.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RobotoFlex.ttf; sourceTree = "<group>"; };
+		7B92DF362BD5336000EC9788 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 		7B9C8B812BCA82E000391CE1 /* CatalogSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogSection.swift; sourceTree = "<group>"; };
 		7B9C8B832BCA88D600391CE1 /* CatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenter.swift; sourceTree = "<group>"; };
 		7B9C8B852BCA88EB00391CE1 /* CatalogBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogBuilder.swift; sourceTree = "<group>"; };
@@ -227,6 +235,8 @@
 				7B1430062BA36A59000C6C8C /* UIColor + Extensions.swift */,
 				7B14300A2BA3B7DD000C6C8C /* UIFont + Extensions.swift */,
 				7BBB7EFC2BA77960000A66AA /* UIView + Extensions.swift */,
+				7B92DF362BD5336000EC9788 /* UIStackView + Extensions.swift */,
+				7B92DF302BD5282400EC9788 /* NSAttributedString + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +285,8 @@
 		7BA0E1052B9E37F10061744C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				7B92DF342BD52AEE00EC9788 /* RobotoFlex.ttf */,
+				7B92DF2E2BD526C500EC9788 /* PlayfairDisplay.ttf */,
 				7BA0E0F72B9E2C620061744C /* OpenSans.ttf */,
 			);
 			path = Fonts;
@@ -490,6 +502,8 @@
 			files = (
 				7BA0E0B12B9C5C0F0061744C /* LaunchScreen.storyboard in Resources */,
 				849129F72BCA9F9700469E2C /* GoogleService-Info.plist in Resources */,
+				7B92DF2F2BD526C500EC9788 /* PlayfairDisplay.ttf in Resources */,
+				7B92DF352BD52AEE00EC9788 /* RobotoFlex.ttf in Resources */,
 				7BA0E0AE2B9C5C0F0061744C /* Assets.xcassets in Resources */,
 				7BA0E0F82B9E2C630061744C /* OpenSans.ttf in Resources */,
 			);
@@ -550,8 +564,10 @@
 				7BA4D99A2BCAEA600075FDFF /* MapRouter.swift in Sources */,
 				7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */,
 				7BBB7F042BA77C0A000A66AA /* SignUpBuilder.swift in Sources */,
+				7B92DF312BD5282400EC9788 /* NSAttributedString + Extension.swift in Sources */,
 				7BA4D9A12BCC45910075FDFF /* CLLocation + Extensions.swift in Sources */,
 				7BBB7EFD2BA77960000A66AA /* UIView + Extensions.swift in Sources */,
+				7B92DF372BD5336000EC9788 /* UIStackView + Extensions.swift in Sources */,
 				7BA4D99C2BCAECBB0075FDFF /* MarkAnnotation.swift in Sources */,
 				7B14300F2BA3C645000C6C8C /* AuthenticationBuilder.swift in Sources */,
 				7BA4D9A42BCC48470075FDFF /* PlacesTableViewController.swift in Sources */,

@@ -16,6 +16,9 @@ enum SystemImage: String {
     case person = "person"
     case location = "location"
     case wineglass = "wineglass"
+    case star = "star"
+    case starFill = "star.fill"
+    case starHalf = "star.leadinghalf.filled"
     
     var image: UIImage? {
         return UIImage(systemName: self.rawValue)
