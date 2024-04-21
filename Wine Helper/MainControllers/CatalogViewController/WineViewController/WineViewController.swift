@@ -18,12 +18,13 @@ final class WineViewController: UIViewController {
         category: "Dry Red",
         description: "An elegant wine with aromas of blackcurrant, cherry and oak, with soft tannins and a long aftertaste.",
         alcoholPl: 13.5,
+        rating: 4.68,
         sweetness: 2,
         bitterness: 3,
         acidity: 4,
         country: "France",
         region: "Bordeaux",
-        grapeSort: ["Cabernet Sauvignon", "Merlot", "Petit Verdot"],
+        grapeVarieties: ["Cabernet Sauvignon", "Merlot", "Petit Verdot"],
         harvestDate: 2020,
         recommendations: "Perfect for pairing red meats and cheeses.",
         price: 300
@@ -41,7 +42,7 @@ final class WineViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = UIColor.CustomColors.background
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -121,8 +122,13 @@ final class WineViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.CustomColors.detailsBackgroundColor
         view.layer.cornerRadius = 100
-        view.layer.masksToBounds = true
         view.layer.zPosition = 0
+        
+        view.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 3)
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowRadius = 10
+        
         return view
     }()
     
@@ -232,7 +238,6 @@ final class WineViewController: UIViewController {
         stackView.layer.shadowRadius = 10
         
         stackView.layer.cornerRadius = 10
-//        stackView.layer.masksToBounds = true
         
         return stackView
     }()
@@ -263,26 +268,213 @@ final class WineViewController: UIViewController {
         return label
     }()
     
+    private lazy var grapesVarietiesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let text = "Grapes varieties"
+        label.attributedText = NSAttributedString.attributedString(withText: text, spacing: 2.0)
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 22, style: .semiBold)
+        return label
+    }()
+    
+    private lazy var wineGrapeVarietiesStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        
+        return stackView
+    }()
+    
+    private lazy var characteristicsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let text = "Characteristics"
+        label.attributedText = NSAttributedString.attributedString(withText: text, spacing: 2.0)
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 22, style: .semiBold)
+        return label
+    }()
+    
+    private lazy var wineCharacteristicsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 15
+        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
+        stackView.backgroundColor = UIColor.CustomColors.background
+        
+        stackView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        stackView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        stackView.layer.shadowOpacity = 0.1
+        stackView.layer.shadowRadius = 10
+        
+        stackView.layer.cornerRadius = 10
+        
+        return stackView
+    }()
+    
+    private lazy var wineSweetnessFieldsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 1
+        return stackView
+    }()
+    
+    private lazy var sweetnessLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Sweetness"
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 14, style: .regular)
+        return label
+    }()
+    
+    private lazy var wineSweetnessLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String(wineModel.sweetness) + " / 5"
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 14, style: .regular)
+        return label
+    }()
+    
+    private lazy var wineBitternessFieldsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 1
+        return stackView
+    }()
+    
+    private lazy var bitternessLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Bitterness"
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 14, style: .regular)
+        return label
+    }()
+    
+    private lazy var wineBitternessLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String(wineModel.bitterness) + " / 5"
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 14, style: .regular)
+        return label
+    }()
+    
+    private lazy var wineAcidityFieldsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 1
+        return stackView
+    }()
+    
+    private lazy var acidityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Acidity"
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 14, style: .regular)
+        return label
+    }()
+    
+    private lazy var wineAcidityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String(wineModel.acidity) + " / 5"
+        label.numberOfLines = 0
+        label.font = .playfair(ofSize: 14, style: .regular)
+        return label
+    }()
+    
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.CustomColors.background
         self.setupUI()
-        
-        for family in UIFont.familyNames {
-            print("Family: \(family)")
-            for fontName in UIFont.fontNames(forFamilyName: family) {
-                print("   Font: \(fontName)")
-            }
+        DispatchQueue.main.async {
+            self.fillStars(with: self.wineModel.rating)
+            self.fillGrapeVarieties(with: self.wineModel.grapeVarieties)
+        }
+        NetworkManager.shared.getWine(with: 2) { result in
+            switch result {
+                case .success(let wineDTOs):
+                print(wineDTOs)
+                case .failure(let error):
+                    // Обработка ошибки при запросе
+                print("Failed to fetch wine: \(error.localizedDescription)")
+                }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NetworkManager.shared.getWine(with: 2) { result in
+            switch result {
+                case .success(let wineDTOs):
+                print(wineDTOs)
+                case .failure(let error):
+                    // Обработка ошибки при запросе
+                print("Failed to fetch wine: \(error.localizedDescription)")
+                }
         }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        winePictureImageView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
-        wineDescriptionStackView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        self.winePictureImageView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        self.wineDescriptionStackView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        self.wineCharacteristicsStackView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
     }
-    
 }
 
 extension WineViewController: WineViewInput {
+    func fillStars(with rating: Float) {
+        let fullStars = Int(rating)
+        let halfStar = rating - Float(fullStars)
+        
+        var starsArray: [UIImage?] = []
+        
+        for _ in 0..<fullStars {
+            let imageView = SystemImage.starFill.image
+            starsArray.append(imageView)
+        }
+        
+        if halfStar > 0.5 {
+            let imageView = SystemImage.starHalf.image
+            starsArray.append(imageView)
+        }
+        
+        let totalStars = fullStars + (halfStar > 0 ? 1 : 0)
+        for _ in totalStars..<5 {
+            let imageView = SystemImage.star.image
+            starsArray.append(imageView)
+        }
+        
+        for (index, star) in starsArray.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4 * Double(index)) {
+                let starView = self.wineRatingStarsStackView.arrangedSubviews[index] as? UIImageView
+                starView?.image = star
+            }
+        }
+    }
+    
+    func fillGrapeVarieties(with varieties: [String]) {
+        for variety in varieties {
+            let label = UILabel()
+            label.text = variety
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            label.font = .playfair(ofSize: 14, style: .regular)
+            
+            self.wineGrapeVarietiesStackView.addArrangedSubview(label)
+        }
+    }
 }
 
 private extension WineViewController {
@@ -303,7 +495,11 @@ private extension WineViewController {
             self.wineDetailsContentView,
             self.winePictureImageView,
             self.wineFieldsStackView,
-            self.wineDescriptionStackView
+            self.wineDescriptionStackView,
+            self.grapesVarietiesLabel,
+            self.wineGrapeVarietiesStackView,
+            self.characteristicsLabel,
+            self.wineCharacteristicsStackView
         )
         
         self.wineCountryFieldsStackView.addArrangedSubviews(
@@ -332,6 +528,27 @@ private extension WineViewController {
             self.wineDescriptionLabel
         )
         
+        self.wineSweetnessFieldsStackView.addArrangedSubviews(
+            self.sweetnessLabel,
+            self.wineSweetnessLabel
+        )
+        
+        self.wineBitternessFieldsStackView.addArrangedSubviews(
+            self.bitternessLabel,
+            self.wineBitternessLabel
+        )
+        
+        self.wineAcidityFieldsStackView.addArrangedSubviews(
+            self.acidityLabel,
+            self.wineAcidityLabel
+        )
+        
+        self.wineCharacteristicsStackView.addArrangedSubviews(
+            self.wineSweetnessFieldsStackView,
+            self.wineBitternessFieldsStackView,
+            self.wineAcidityFieldsStackView
+        )
+        
         NSLayoutConstraint.activate([
             self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -343,7 +560,7 @@ private extension WineViewController {
             self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
             self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
             self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
-            self.contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
+            //            self.contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor, multiplier: 2),
             
             self.wineBrandLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
             self.wineBrandLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),
@@ -379,6 +596,21 @@ private extension WineViewController {
             self.wineDescriptionStackView.topAnchor.constraint(equalTo: self.wineAlcoholLabel.bottomAnchor, constant: 20),
             self.wineDescriptionStackView.leadingAnchor.constraint(equalTo: self.winePriceLabel.leadingAnchor),
             self.wineDescriptionStackView.trailingAnchor.constraint(equalTo: self.winePictureImageView.leadingAnchor, constant: -10),
+            
+            self.grapesVarietiesLabel.topAnchor.constraint(equalTo: self.wineDetailsContentView.bottomAnchor, constant: 25),
+            self.grapesVarietiesLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            
+            self.wineGrapeVarietiesStackView.topAnchor.constraint(equalTo: self.grapesVarietiesLabel.bottomAnchor, constant: 25),
+            self.wineGrapeVarietiesStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20),
+            self.wineGrapeVarietiesStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            
+            self.characteristicsLabel.topAnchor.constraint(equalTo: self.wineGrapeVarietiesStackView.bottomAnchor, constant: 25),
+            self.characteristicsLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            
+            self.wineCharacteristicsStackView.topAnchor.constraint(equalTo: self.characteristicsLabel.bottomAnchor, constant: 25),
+            self.wineCharacteristicsStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20),
+            self.wineCharacteristicsStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            self.wineCharacteristicsStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -20),
         ])
     }
     

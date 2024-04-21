@@ -55,25 +55,16 @@ final class MainTabBarController: UITabBarController {
 //        self.tabBar.standardAppearance = appereance
 //        self.tabBar.scrollEdgeAppearance = appereance
         
-        self.tabBar.tintColor = UIColor.CustomColors.buttonWhite
+        self.tabBar.tintColor = UIColor.CustomColors.shadowColor
         self.tabBar.unselectedItemTintColor = UIColor.CustomColors.burgundy
         
-        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
-        tabBar.items?.forEach { item in
-            item.setTitleTextAttributes(attributes, for: .selected)
-            item.setTitleTextAttributes(attributes, for: .normal)
-        }
-        
         self.tabBar.items?[0].image = SystemImage.location.image
-        self.tabBar.items?[0].title = "Map"
         
         self.tabBar.items?[1].image = UIImage(named: "wineglass")?
                                         .withRenderingMode(.alwaysOriginal)
                                         .resized(to: CGSize(width: 28, height: 28)
                                         )
-        self.tabBar.items?[1].title = "Catalog"
         
         self.tabBar.items?[2].image = SystemImage.person.image
-        self.tabBar.items?[2].title = "Profile"
     }
 }
