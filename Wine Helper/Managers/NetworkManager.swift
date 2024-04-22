@@ -20,7 +20,7 @@ final class NetworkManager {
     private init() {}
     
     enum Constants {
-        static let baseURL = "https://861794a9cf8742.lhr.life/api/v1.0"
+        static let baseURL = "https://b359e38e8015ab.lhr.life/api/v1.0"
     }
     
     enum EndPoints {
@@ -40,8 +40,8 @@ final class NetworkManager {
 //        }
 //    }
     
-    func getWine(with id: Int, completion: @escaping(Result<[WineDTO], RequestError>) -> Void) {
-        AF.request(Constants.baseURL + EndPoints.wines + String(id)).responseDecodable(of: [WineDTO].self) { response in
+    func getWine(with id: Int, completion: @escaping(Result<WineDTO, RequestError>) -> Void) {
+        AF.request(Constants.baseURL + EndPoints.wines + String(id)).responseDecodable(of: WineDTO.self) { response in
             print(Constants.baseURL + EndPoints.wines + String(id))
             switch response.result {
             case .success(let coin):

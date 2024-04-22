@@ -403,26 +403,17 @@ final class WineViewController: UIViewController {
             self.fillStars(with: self.wineModel.rating)
             self.fillGrapeVarieties(with: self.wineModel.grapeVarieties)
         }
-        NetworkManager.shared.getWine(with: 2) { result in
-            switch result {
-                case .success(let wineDTOs):
-                print(wineDTOs)
-                case .failure(let error):
-                    // Обработка ошибки при запросе
-                print("Failed to fetch wine: \(error.localizedDescription)")
-                }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         NetworkManager.shared.getWine(with: 2) { result in
             switch result {
-                case .success(let wineDTOs):
+            case .success(let wineDTOs):
                 print(wineDTOs)
-                case .failure(let error):
-                    // Обработка ошибки при запросе
+            case .failure(let error):
+                // Обработка ошибки при запросе
                 print("Failed to fetch wine: \(error.localizedDescription)")
-                }
+            }
         }
     }
     

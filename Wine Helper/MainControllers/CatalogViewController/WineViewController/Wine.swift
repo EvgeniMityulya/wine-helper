@@ -29,9 +29,30 @@ struct WineDTO: Codable {
     let id: Int?
     let name: String?
     let yearProduced: Int?
-    let picture: String?
     let alcoholPercentage: Double?
-    let categoryId: Int?
-    let prodId: Int?
-    let scoreId: Int?
+    let category: Category
+    let prod: Prod
+    let score: Score
 }
+
+struct Category: Codable {
+    let id: Int?
+    let name: String?
+}
+
+struct Prod: Codable {
+    let id: Int?
+    let name: String?
+    let details: String?
+    let regionId: Int?
+}
+
+struct Score: Codable {
+    let id: Int?
+    let sweetness: Int?
+    let bitterness: Int?
+    let acidity: Int?
+    let overall: Int?
+    let wineId: Int?
+}
+
