@@ -38,7 +38,7 @@ final class CatalogViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .white
         scrollView.isScrollEnabled = true
-        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentSize = contentView.bounds.size
         return scrollView
@@ -72,7 +72,6 @@ final class CatalogViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.CustomColors.background
-        self.navigationController?.navigationBar.isHidden = true
         
         self.setupUI()
         self.configureActions()
@@ -85,8 +84,6 @@ final class CatalogViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        
-    
         
 //        NetworkManager.shared.getWineSectionCells { [weak self] result in
 //            switch result {
@@ -106,6 +103,10 @@ final class CatalogViewController: UIViewController {
 //                print(error.localizedDescription)
 //            }
 //        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func configureActions() {

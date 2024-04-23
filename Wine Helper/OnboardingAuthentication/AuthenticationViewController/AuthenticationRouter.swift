@@ -24,11 +24,14 @@ final class AuthenticationRouter {
 extension AuthenticationRouter: AuthenticationRouterInput {
     func goToLoginScreen() {
         let viewController = LoginBuilder.setupModule()
+        self.viewController.navigationController?.navigationBar.tintColor = UIColor.CustomColors.burgundy
         self.viewController.navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     func goToSignUpScreen() {
         let viewController = SignUpBuilder.setupModule()
+        self.viewController.navigationController?.navigationBar.tintColor = UIColor.CustomColors.burgundy
         self.viewController.navigationController?.pushViewController(viewController, animated: true)
     }
 }

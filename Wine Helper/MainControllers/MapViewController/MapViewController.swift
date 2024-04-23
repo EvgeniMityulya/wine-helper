@@ -26,14 +26,23 @@ class MapViewController: UIViewController {
     
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
-        mapView.delegate = self 
-        mapView.showsUserLocation = true
         mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.showsCompass = false
         return mapView
+    }()
+    
+    private lazy var compass: MKCompassButton = {
+        let compass = MKCompassButton(mapView: self.mapView)
+        compass.translatesAutoresizingMaskIntoConstraints = false
+        return compass
     }()
     
     private lazy var searchTextField: UISearchTextField = {
         let searchTextField = UISearchTextField()
+        
+        searchTextField.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.delegate = self
         searchTextField.layer.cornerRadius = 10
         searchTextField.clipsToBounds = true
@@ -42,8 +51,31 @@ class MapViewController: UIViewController {
         searchTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         searchTextField.leftViewMode = .always
         searchTextField.returnKeyType = .go
-        searchTextField.translatesAutoresizingMaskIntoConstraints = false
+        searchTextField.textColor = .black
+        
+        if let placeholder = searchTextField.placeholder {
+                let attributes: [NSAttributedString.Key: Any] = [
+                    .foregroundColor: UIColor.gray,
+                    .font: UIFont.systemFont(ofSize: 16)
+                ]
+                searchTextField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
+            }
         return searchTextField
+    }()
+    
+    
+    private lazy var userLocationButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = SystemImage.compass.image?.applyingSymbolConfiguration(
+                .init(pointSize: 30))
+        configuration.cornerStyle = .medium
+        configuration.baseForegroundColor = .burgundy
+        configuration.baseBackgroundColor = .burgundy
+        configuration.contentInsets = .zero
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(locateButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     @objc private func locateButtonTapped() {
@@ -52,16 +84,9 @@ class MapViewController: UIViewController {
             self.mapView.setRegion(region, animated: true)
         }
     }
-    
-    private lazy var locateButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Locate Me", for: .normal)
-        button.addTarget(self, action: #selector(locateButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+ 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -130,13 +155,14 @@ extension MapViewController: MKMapViewDelegate {
         let placeAnnotation = self.places.first { $0.id == selectionAnnotation.id }
         placeAnnotation?.isSelected = true
         self.presentPlacesSheet(places: self.places)
-
+        
     }
     
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        return nil
-//    }
-//    
+    //    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    //        return nil
+    //    }
+    //
+    
     private func clearAllSelections() {
         self.places = self.places.map { place in
             place.isSelected = false
@@ -219,7 +245,8 @@ private extension MapViewController {
         self.view.addSubview(
             self.mapView,
             self.searchTextField,
-            self.locateButton
+            self.userLocationButton,
+            self.compass
         )
         
         NSLayoutConstraint.activate([
@@ -233,10 +260,15 @@ private extension MapViewController {
             self.searchTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15),
             self.searchTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
             
-            self.locateButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            self.locateButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
-            self.locateButton.widthAnchor.constraint(equalToConstant: 50),
-            self.locateButton.heightAnchor.constraint(equalToConstant: 50),
+            self.userLocationButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            self.userLocationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
+            self.userLocationButton.widthAnchor.constraint(equalToConstant: 50),
+            self.userLocationButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.compass.centerXAnchor.constraint(equalTo: self.userLocationButton.centerXAnchor),
+            self.compass.bottomAnchor.constraint(equalTo: self.userLocationButton.topAnchor, constant: -5),
+            //            self.compass.widthAnchor.constraint(equalToConstant: 50),
+            //            self.compass.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }

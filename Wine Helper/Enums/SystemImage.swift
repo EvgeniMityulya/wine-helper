@@ -19,6 +19,7 @@ enum SystemImage: String {
     case star = "star"
     case starFill = "star.fill"
     case starHalf = "star.leadinghalf.filled"
+    case compass = "location.circle"
     
     var image: UIImage? {
         return UIImage(systemName: self.rawValue)

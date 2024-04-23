@@ -12,7 +12,7 @@ import MapKit
 class PlacesTableViewController: UITableViewController {
     
     var userLocation: CLLocation
-    var places: [PlaceAnnotation]
+    var places: [PlaceAnnotation] = []
     
     init(userLocation: CLLocation, places: [PlaceAnnotation]) {
         self.userLocation = userLocation
@@ -20,7 +20,14 @@ class PlacesTableViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PlaceCell")
+        self.sortPlaces()
         self.places.swapAt(indexForSelectedRow ?? 0, 0)
+    }
+    
+    private func sortPlaces() {
+        self.places = self.places.sorted(by: {
+            calculateDistance(from: userLocation, to: $0.location) < calculateDistance(from: userLocation, to: $1.location)
+        })
     }
     
     private var indexForSelectedRow: Int? {
