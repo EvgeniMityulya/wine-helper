@@ -7,52 +7,58 @@
 
 import Foundation
 
-struct Wine: Decodable {
-    let brand: String
-    let name: String
-    let category: String
-    let description: String
-    let alcoholPl: Float
-    let rating: Float
-    let sweetness: Int
-    let bitterness: Int
-    let acidity: Int
-    let country: String
-    let region: String
-    let grapeVarieties: [String]
-    let harvestDate: Int
-    let recommendations: String
-    let price: Float
-}
-
 struct WineDTO: Codable {
     let id: Int?
     let name: String?
+    let isNewArr: Bool?
+    let isSpecOffer: Bool?
+    let isBestSeller: Bool?
     let yearProduced: Int?
+    let price: Double?
     let alcoholPercentage: Double?
-    let category: Category
-    let prod: Prod
-    let score: Score
+    let category: CategoryDTO
+    let prod: ProducerDTO
+    let score: ScoreDTO
 }
 
-struct Category: Codable {
+
+struct WineCellDTO: Codable {
     let id: Int?
+    let yearProduced: Int?
     let name: String?
+    let prod: String?
+    let category: CategoryDTO
 }
 
-struct Prod: Codable {
+struct CategoryDTO: Codable {
+    let id: Int?
+    let color: String?
+    let sweetness: String?
+}
+
+struct ProducerDTO: Codable {
     let id: Int?
     let name: String?
     let details: String?
-    let regionId: Int?
+    let region: RegionDTO?
 }
 
-struct Score: Codable {
+struct RegionDTO: Codable {
+    let id: Int?
+    let name: String?
+    let country: CountryDTO
+}
+
+struct CountryDTO: Codable {
+    let id: Int?
+    let name: String?
+}
+
+struct ScoreDTO: Codable {
     let id: Int?
     let sweetness: Int?
     let bitterness: Int?
     let acidity: Int?
-    let overall: Int?
-    let wineId: Int?
+    let overall: Double?
 }
 

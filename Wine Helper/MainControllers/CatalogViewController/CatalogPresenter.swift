@@ -10,6 +10,8 @@ import UIKit
 protocol CatalogViewOutput {
     func specialOfferSeeAllButtonTouchUpInside()
     func newArrivalsSeeAllButtonTouchUpInside()
+    func bestSellersSeeAllButtonTouchUpInside()
+    func collectionViewCellTouchUpInside(model: WineSelectionInfo)
 }
 
 final class CatalogPresenter: CatalogViewOutput {
@@ -27,6 +29,14 @@ final class CatalogPresenter: CatalogViewOutput {
     
     func newArrivalsSeeAllButtonTouchUpInside() {
         print("newArrivalsSeeAllButtonTouchUpInside")
+    }
+    
+    func bestSellersSeeAllButtonTouchUpInside() {
+        print("newArrivalsSeeAllButtonTouchUpInside")
+    }
+    
+    func collectionViewCellTouchUpInside(model: WineSelectionInfo) {
+        self.router.goToWineViewController(with: model.id, image: model.image)
     }
 }
 

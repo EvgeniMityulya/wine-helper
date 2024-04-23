@@ -7,6 +7,8 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
+import UIKit
 
 enum RequestError: Error {
     case ErrorRequest
@@ -20,11 +22,16 @@ final class NetworkManager {
     private init() {}
     
     enum Constants {
-        static let baseURL = "https://b359e38e8015ab.lhr.life/api/v1.0"
+        static let baseURL = "https://d87c4a7be9d46d.lhr.life/api/v1.0"
     }
     
     enum EndPoints {
-        static let wines = "/wines/"
+        static let wines = "/Wines"
+        
+        enum Sections {
+            static let special = "/Specs"
+            static let images = "/Imgs/"
+        }
     }
     
     // MARK: - NETWORK REQUEST:
@@ -41,12 +48,36 @@ final class NetworkManager {
 //    }
     
     func getWine(with id: Int, completion: @escaping(Result<WineDTO, RequestError>) -> Void) {
-        AF.request(Constants.baseURL + EndPoints.wines + String(id)).responseDecodable(of: WineDTO.self) { response in
+        AF.request(Constants.baseURL + EndPoints.wines + "/" + String(id)).responseDecodable(of: WineDTO.self) { response in
             print(Constants.baseURL + EndPoints.wines + String(id))
             switch response.result {
             case .success(let coin):
                 print(coin)
                 completion(.success(coin))
+            case .failure:
+                completion(.failure(.ErrorRequest))
+            }
+        }
+    }
+    
+    func getWineSectionCells(completion: @escaping(Result<[WineCellDTO], RequestError>) -> Void) {
+        AF.request(Constants.baseURL + EndPoints.wines + EndPoints.Sections.special).responseDecodable(of: [WineCellDTO].self) { response in
+            switch response.result {
+            case .success(let coin):
+                print(coin)
+                completion(.success(coin))
+            case .failure:
+                completion(.failure(.ErrorRequest))
+            }
+        }
+    }
+    
+    func getWineImage(id: Int, completion: @escaping(Result<UIImage, RequestError>) -> Void) {
+        AF.request(Constants.baseURL + EndPoints.wines + EndPoints.Sections.images + String(id)).responseImage { response in
+            switch response.result {
+            case .success(let image):
+                print(image)
+                completion(.success(image))
             case .failure:
                 completion(.failure(.ErrorRequest))
             }

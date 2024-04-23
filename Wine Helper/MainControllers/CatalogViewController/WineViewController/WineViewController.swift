@@ -12,25 +12,15 @@ protocol WineViewInput: AnyObject {
 
 final class WineViewController: UIViewController {
     
-    var wineModel: Wine = Wine(
-        brand: "Chateau Margaux",
-        name: "Grand Vin",
-        category: "Dry Red",
-        description: "An elegant wine with aromas of blackcurrant, cherry and oak, with soft tannins and a long aftertaste.",
-        alcoholPl: 13.5,
-        rating: 4.68,
-        sweetness: 2,
-        bitterness: 3,
-        acidity: 4,
-        country: "France",
-        region: "Bordeaux",
-        grapeVarieties: ["Cabernet Sauvignon", "Merlot", "Petit Verdot"],
-        harvestDate: 2020,
-        recommendations: "Perfect for pairing red meats and cheeses.",
-        price: 300
-    )
-    
     var output: WineViewOutput?
+    
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        indicator.layer.zPosition = 10
+        return indicator
+    }()
     
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -52,35 +42,21 @@ final class WineViewController: UIViewController {
     
     private lazy var winePictureImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "wine")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         
-        // Добавляем тень
         imageView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
         imageView.layer.shadowOffset = CGSize(width: 0, height: 8)
         imageView.layer.shadowOpacity = 0.5
         imageView.layer.shadowRadius = 10
         
-        //        let width: CGFloat = 75
-        //        let height: CGFloat = 300
-        //
-        //        let shadowSize: CGFloat = 20
-        //        let shadowDistance: CGFloat = 20
-        //        let contactRect = CGRect(x: 50 - shadowSize, y: height - (shadowSize * 0.4), width: width + shadowSize, height: shadowSize)
-        //        imageView.layer.shadowPath = UIBezierPath(ovalIn: contactRect).cgPath
-        //        imageView.layer.shadowRadius = 5
-        //        imageView.layer.shadowOpacity = 0.6
         imageView.layer.masksToBounds = false
-        
         
         return imageView
     }()
     
     private lazy var wineBrandLabel: UILabel = {
         let label = UILabel()
-        let text = wineModel.brand
-        label.attributedText = NSAttributedString.attributedString(withText: text, spacing: 2.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .playfair(ofSize: 23, style: .medium)
         label.numberOfLines = 0
@@ -89,8 +65,6 @@ final class WineViewController: UIViewController {
     
     private lazy var wineNameLabel: UILabel = {
         let label = UILabel()
-        let text = wineModel.name + " " + String(wineModel.harvestDate)
-        label.attributedText = NSAttributedString.attributedString(withText: text, spacing: 2.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .playfair(ofSize: 23, style: .bold)
         label.numberOfLines = 0
@@ -99,8 +73,6 @@ final class WineViewController: UIViewController {
     
     private lazy var winePriceLabel: UILabel = {
         let label = UILabel()
-        let text = "$ " + String(self.wineModel.price)
-        label.attributedText = NSAttributedString.attributedString(withText: text, spacing: 1.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .robotoFlex(ofSize: 17, style: .regular)
         label.numberOfLines = 0
@@ -109,7 +81,6 @@ final class WineViewController: UIViewController {
     
     private lazy var wineAlcoholLabel: UILabel = {
         let label = UILabel()
-        label.text = String(wineModel.alcoholPl) + " % alc."
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .playfair(ofSize: 19, style: .regular)
         label.numberOfLines = 0
@@ -164,7 +135,6 @@ final class WineViewController: UIViewController {
     
     private lazy var wineCountryLabel: UILabel = {
         let label = UILabel()
-        label.text = wineModel.country
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .playfair(ofSize: 19, style: .regular)
         label.numberOfLines = 0
@@ -173,7 +143,6 @@ final class WineViewController: UIViewController {
     
     private lazy var wineRegionLabel: UILabel = {
         let label = UILabel()
-        label.text = wineModel.region
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .playfair(ofSize: 19, style: .regular)
         label.numberOfLines = 0
@@ -182,7 +151,6 @@ final class WineViewController: UIViewController {
     
     private lazy var wineCategoryLabel: UILabel = {
         let label = UILabel()
-        label.text = wineModel.category
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .playfair(ofSize: 19, style: .regular)
         label.numberOfLines = 0
@@ -262,7 +230,6 @@ final class WineViewController: UIViewController {
     private lazy var wineDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = wineModel.description
         label.numberOfLines = 0
         label.font = .playfair(ofSize: 14, style: .regular)
         return label
@@ -337,7 +304,7 @@ final class WineViewController: UIViewController {
     private lazy var wineSweetnessLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = String(wineModel.sweetness) + " / 5"
+        
         label.numberOfLines = 0
         label.font = .playfair(ofSize: 14, style: .regular)
         return label
@@ -363,7 +330,6 @@ final class WineViewController: UIViewController {
     private lazy var wineBitternessLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = String(wineModel.bitterness) + " / 5"
         label.numberOfLines = 0
         label.font = .playfair(ofSize: 14, style: .regular)
         return label
@@ -389,31 +355,61 @@ final class WineViewController: UIViewController {
     private lazy var wineAcidityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = String(wineModel.acidity) + " / 5"
         label.numberOfLines = 0
         label.font = .playfair(ofSize: 14, style: .regular)
         return label
     }()
     
+    var id: Int
+    var image: UIImage
+    
+    init(id: Int, image: UIImage) {
+        self.id = id
+        self.image = image
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.CustomColors.background
+        
         self.setupUI()
-        DispatchQueue.main.async {
-            self.fillStars(with: self.wineModel.rating)
-            self.fillGrapeVarieties(with: self.wineModel.grapeVarieties)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        NetworkManager.shared.getWine(with: 2) { result in
+        super.viewWillAppear(animated)
+        self.loadingIndicator.startAnimating()
+        NetworkManager.shared.getWine(with: self.id) { result in
             switch result {
-            case .success(let wineDTOs):
-                print(wineDTOs)
+            case .success(let wine):
+                print(wine)
+                self.setupData(with: wine, image: self.image)
+                self.loadingIndicator.stopAnimating()
             case .failure(let error):
-                // Обработка ошибки при запросе
                 print("Failed to fetch wine: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    private func setupData(with model: WineDTO, image: UIImage) {
+        DispatchQueue.main.async {
+            self.fillStars(with: 3.58)
+            self.fillGrapeVarieties(with: ["dada", "dadasdasdsa"])
+            self.winePictureImageView.image = image
+            self.wineBrandLabel.attributedText = NSAttributedString.attributedString(withText: model.prod.name ?? "", spacing: 2.0)
+            self.wineNameLabel.attributedText = NSAttributedString.attributedString(withText: (model.name ?? "") + " " + String(model.yearProduced ?? 0), spacing: 2.0)
+            self.winePriceLabel.attributedText = NSAttributedString.attributedString(withText: "BYN " + String(model.price ?? 0), spacing: 1.0)
+            self.wineAlcoholLabel.text = String(model.alcoholPercentage ?? 0) + " % alc."
+            self.wineCountryLabel.text = model.prod.region?.country.name
+            self.wineRegionLabel.text = model.prod.region?.name
+            self.wineCategoryLabel.text = (model.category.color ?? "") + " " + (model.category.sweetness ?? "")
+            self.wineDescriptionLabel.text = model.prod.details
+            self.wineSweetnessLabel.text = String(model.score.sweetness ?? 0) + " / 5"
+            self.wineBitternessLabel.text = String(model.score.bitterness ?? 0) + " / 5"
+            self.wineAcidityLabel.text = String(model.score.acidity ?? 0) + " / 5"
         }
     }
     
@@ -421,13 +417,15 @@ final class WineViewController: UIViewController {
         self.winePictureImageView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
         self.wineDescriptionStackView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
         self.wineCharacteristicsStackView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        self.wineDetailsContentView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
     }
 }
 
 extension WineViewController: WineViewInput {
-    func fillStars(with rating: Float) {
+    func fillStars(with rating: Double?) {
+        guard let rating = rating else { return }
         let fullStars = Int(rating)
-        let halfStar = rating - Float(fullStars)
+        let halfStar = rating - Double(fullStars)
         
         var starsArray: [UIImage?] = []
         
@@ -471,6 +469,7 @@ extension WineViewController: WineViewInput {
 private extension WineViewController {
     func setupUI() {
         self.view.addSubview(
+            self.loadingIndicator,
             self.scrollView
         )
         
@@ -546,12 +545,14 @@ private extension WineViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             
+            self.loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
             self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
             self.contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
             self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
             self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
             self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
-            //            self.contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor, multiplier: 2),
             
             self.wineBrandLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
             self.wineBrandLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),

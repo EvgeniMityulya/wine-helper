@@ -14,6 +14,8 @@ final class CatalogViewController: UIViewController {
     
     var output: CatalogViewOutput?
     
+    let specialSectionLoadingIndicator = UIActivityIndicatorView(style: .medium)
+    
     private lazy var contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -51,22 +53,67 @@ final class CatalogViewController: UIViewController {
     }()
     
     private lazy var specialOfferSection: CatalogSection = {
-        let section = CatalogSection(sectionName: "Special Offer", showSeeAllButton: true)
+        let section = CatalogSection(sectionName: "Special Offer")
         section.translatesAutoresizingMaskIntoConstraints = false
         return section
     }()
     
     private lazy var newArrivalsSection: CatalogSection = {
-        let section = CatalogSection(sectionName: "New Arrivals", showSeeAllButton: true)
+        let section = CatalogSection(sectionName: "New Arrivals")
+        section.translatesAutoresizingMaskIntoConstraints = false
+        return section
+    }()
+    
+    private lazy var bestSellersSection: CatalogSection = {
+        let section = CatalogSection(sectionName: "Best Sellers")
         section.translatesAutoresizingMaskIntoConstraints = false
         return section
     }()
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .systemGray
-        self.setupUI()
+        self.view.backgroundColor = UIColor.CustomColors.background
         self.navigationController?.navigationBar.isHidden = true
         
+        self.setupUI()
+        self.configureActions()
+        NetworkManager.shared.getWineSectionCells { [weak self] result in
+            switch result {
+            case .success(let wineCellDTOs):
+                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.specialOfferSection)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+    
+        
+//        NetworkManager.shared.getWineSectionCells { [weak self] result in
+//            switch result {
+//            case .success(let wineCellDTOs):
+//                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.newArrivalsSection)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//        
+//        NetworkManager.shared.getWineSectionCells { [weak self] result in
+//            switch result {
+//            case .success(let wineCellDTOs):
+//                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.specialOfferSection)
+//                
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+    }
+    
+    private func configureActions() {
+        self.configureButtonsSeeAll()
+        self.configureCollectionViewCellActions()
+    }
+    
+    private func configureButtonsSeeAll() {
         specialOfferSection.seeAllButtonAction = { [weak self] in
             guard let self = self else { return }
             self.output?.specialOfferSeeAllButtonTouchUpInside()
@@ -75,6 +122,48 @@ final class CatalogViewController: UIViewController {
         newArrivalsSection.seeAllButtonAction = { [weak self] in
             guard let self = self else { return }
             self.output?.newArrivalsSeeAllButtonTouchUpInside()
+        }
+        
+        bestSellersSection.seeAllButtonAction = { [weak self] in
+            guard let self = self else { return }
+            self.output?.newArrivalsSeeAllButtonTouchUpInside()
+        }
+    }
+    
+    private func configureCollectionViewCellActions() {
+        specialOfferSection.cellSelectionHandler = { model in
+            self.output?.collectionViewCellTouchUpInside(model: model)
+        }
+    }
+    
+    private func fetchImagesForWineCellDTOs(_ wineCellDTOs: [WineCellDTO], section: CatalogSection?) {
+        specialOfferSection.setLoadingIndicatorVisible(true)
+        let dispatchGroup = DispatchGroup()
+        var wines: [WineCellDTO] = []
+        var images: [UIImage] = []
+        
+        for wineCellDTO in wineCellDTOs {
+            guard let id = wineCellDTO.id else { continue }
+            
+            dispatchGroup.enter()
+            
+            NetworkManager.shared.getWineImage(id: id) { result in
+                defer { dispatchGroup.leave() }
+                
+                switch result {
+                case .success(let image):
+                    wines.append(wineCellDTO)
+                    images.append(image)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            print("Success")
+            section?.setLoadingIndicatorVisible(false)
+            section?.setWines(wines, images)
         }
     }
 }
@@ -97,8 +186,11 @@ private extension CatalogViewController {
             self.winesStackView
         )
         
-        self.winesStackView.addArrangedSubview(self.specialOfferSection)
-        self.winesStackView.addArrangedSubview(self.newArrivalsSection)
+        self.winesStackView.addArrangedSubviews(
+            self.specialOfferSection,
+            self.newArrivalsSection,
+            self.bestSellersSection
+        )
         
         NSLayoutConstraint.activate([
             self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -111,7 +203,6 @@ private extension CatalogViewController {
             self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
             self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
             self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
-            self.contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
             
             self.topImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
             self.topImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
@@ -119,8 +210,8 @@ private extension CatalogViewController {
             self.topImageView.heightAnchor.constraint(equalToConstant: 220),
             
             self.winesStackView.topAnchor.constraint(equalTo: self.topImageView.bottomAnchor, constant: 10),
-            self.winesStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
-            self.winesStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            self.winesStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.winesStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             self.winesStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
         ])
     }

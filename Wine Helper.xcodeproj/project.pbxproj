@@ -25,6 +25,7 @@
 		7B92DF312BD5282400EC9788 /* NSAttributedString + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF302BD5282400EC9788 /* NSAttributedString + Extension.swift */; };
 		7B92DF352BD52AEE00EC9788 /* RobotoFlex.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B92DF342BD52AEE00EC9788 /* RobotoFlex.ttf */; };
 		7B92DF372BD5336000EC9788 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF362BD5336000EC9788 /* UIStackView + Extensions.swift */; };
+		7B92DF3A2BD6941600EC9788 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B92DF392BD6941600EC9788 /* AlamofireImage */; };
 		7B9C8B822BCA82E000391CE1 /* CatalogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B812BCA82E000391CE1 /* CatalogSection.swift */; };
 		7B9C8B842BCA88D600391CE1 /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B832BCA88D600391CE1 /* CatalogPresenter.swift */; };
 		7B9C8B862BCA88EB00391CE1 /* CatalogBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B852BCA88EB00391CE1 /* CatalogBuilder.swift */; };
@@ -160,6 +161,7 @@
 				849129F52BCA9E7500469E2C /* GoogleSignInSwift in Frameworks */,
 				849C4C3D2BC2B2D300DC0F83 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				849C4C462BC2B3A100DC0F83 /* Alamofire in Frameworks */,
+				7B92DF3A2BD6941600EC9788 /* AlamofireImage in Frameworks */,
 				849C4C4D2BC2B42100DC0F83 /* FirebaseFirestore in Frameworks */,
 				849C4C432BC2B2D300DC0F83 /* FirebaseAppCheck in Frameworks */,
 				849C4C412BC2B2D300DC0F83 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -452,6 +454,7 @@
 				849C4C4C2BC2B42100DC0F83 /* FirebaseFirestore */,
 				849129F22BCA9E7500469E2C /* GoogleSignIn */,
 				849129F42BCA9E7500469E2C /* GoogleSignInSwift */,
+				7B92DF392BD6941600EC9788 /* AlamofireImage */,
 			);
 			productName = "Wine Helper";
 			productReference = 7BA0E0A12B9C5C0D0061744C /* Wine Helper.app */;
@@ -485,6 +488,7 @@
 				849C4C392BC2B2D300DC0F83 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				849C4C442BC2B3A100DC0F83 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				849129F12BCA9E7500469E2C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				7B92DF382BD6941600EC9788 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = 7BA0E0A22B9C5C0D0061744C /* Products */;
 			projectDirPath = "";
@@ -798,6 +802,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7B92DF382BD6941600EC9788 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
 		849129F12BCA9E7500469E2C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -825,6 +837,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7B92DF392BD6941600EC9788 /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B92DF382BD6941600EC9788 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
 		849129F22BCA9E7500469E2C /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 849129F12BCA9E7500469E2C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

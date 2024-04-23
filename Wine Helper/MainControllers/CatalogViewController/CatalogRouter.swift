@@ -8,8 +8,7 @@
 import UIKit
 
 protocol CatalogRouterInput {
-    func goToLoginScreen()
-    func goToSignUpScreen()
+    func goToWineViewController(with id: Int, image: UIImage)
 }
 
 final class CatalogRouter {
@@ -22,13 +21,8 @@ final class CatalogRouter {
 }
 
 extension CatalogRouter: CatalogRouterInput {
-    func goToLoginScreen() {
-        let viewController = LoginBuilder.setupModule()
-        self.viewController.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    func goToSignUpScreen() {
-        let viewController = SignUpBuilder.setupModule()
+    func goToWineViewController(with id: Int, image: UIImage) {
+        let viewController = WineBuilder.setupModule(with: id, image: image)
         self.viewController.navigationController?.pushViewController(viewController, animated: true)
     }
 }
