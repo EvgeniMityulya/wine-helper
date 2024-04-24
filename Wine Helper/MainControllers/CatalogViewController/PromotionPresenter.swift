@@ -1,5 +1,5 @@
 //
-//  CatalogPresenter.swift
+//  PromotionPresenter.swift
 //  Wine Helper
 //
 //  Created by Евгений Митюля on 4/13/24.
@@ -7,19 +7,19 @@
 
 import UIKit
 
-protocol CatalogViewOutput {
+protocol PromotionViewOutput {
     func specialOfferSeeAllButtonTouchUpInside()
     func newArrivalsSeeAllButtonTouchUpInside()
     func bestSellersSeeAllButtonTouchUpInside()
     func collectionViewCellTouchUpInside(model: WineSelectionInfo)
 }
 
-final class CatalogPresenter: CatalogViewOutput {
+final class PromotionPresenter: PromotionViewOutput {
     
-    private unowned let input: CatalogViewInput
-    private let router: CatalogRouterInput
+    private unowned let input: PromotionInput
+    private let router: PromotionRouterInput
     
-    init(input: CatalogViewInput, router: CatalogRouterInput) {
+    init(input: PromotionInput, router: PromotionRouterInput) {
         self.input = input
         self.router = router
     }

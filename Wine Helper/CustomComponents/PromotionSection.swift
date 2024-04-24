@@ -114,7 +114,7 @@ class WineCell: UICollectionViewCell {
     }
 }
 
-class CatalogSection: UIView {
+class PromotionSection: UIView {
     
     private let sectionName: String
     
@@ -203,7 +203,7 @@ class CatalogSection: UIView {
     }
 }
 
-extension CatalogSection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PromotionSection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedWine = wines[indexPath.item]
         let image = images[indexPath.item]
@@ -235,11 +235,9 @@ extension CatalogSection: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
-    
-    
 }
 
-private extension CatalogSection {
+private extension PromotionSection {
     func setupUI() {
         self.addSubview(self.titleLabel)
         self.addSubview(self.seeAllButton)

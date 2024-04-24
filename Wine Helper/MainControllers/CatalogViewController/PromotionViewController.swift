@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol CatalogViewInput: AnyObject {
+protocol PromotionInput: AnyObject {
 }
 
-final class CatalogViewController: UIViewController {
+final class PromotionViewController: UIViewController {
     
-    var output: CatalogViewOutput?
+    var output: PromotionViewOutput?
     
     let specialSectionLoadingIndicator = UIActivityIndicatorView(style: .medium)
     
@@ -52,20 +52,20 @@ final class CatalogViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var specialOfferSection: CatalogSection = {
-        let section = CatalogSection(sectionName: "Special Offer")
+    private lazy var specialOfferSection: PromotionSection = {
+        let section = PromotionSection(sectionName: "Special Offer")
         section.translatesAutoresizingMaskIntoConstraints = false
         return section
     }()
     
-    private lazy var newArrivalsSection: CatalogSection = {
-        let section = CatalogSection(sectionName: "New Arrivals")
+    private lazy var newArrivalsSection: PromotionSection = {
+        let section = PromotionSection(sectionName: "New Arrivals")
         section.translatesAutoresizingMaskIntoConstraints = false
         return section
     }()
     
-    private lazy var bestSellersSection: CatalogSection = {
-        let section = CatalogSection(sectionName: "Best Sellers")
+    private lazy var bestSellersSection: PromotionSection = {
+        let section = PromotionSection(sectionName: "Best Sellers")
         section.translatesAutoresizingMaskIntoConstraints = false
         return section
     }()
@@ -136,7 +136,7 @@ final class CatalogViewController: UIViewController {
         }
     }
     
-    private func fetchImagesForWineCellDTOs(_ wineCellDTOs: [WineCellDTO], section: CatalogSection?) {
+    private func fetchImagesForWineCellDTOs(_ wineCellDTOs: [WineCellDTO], section: PromotionSection?) {
         specialOfferSection.setLoadingIndicatorVisible(true)
         let dispatchGroup = DispatchGroup()
         var wines: [WineCellDTO] = []
@@ -168,10 +168,10 @@ final class CatalogViewController: UIViewController {
     }
 }
 
-extension CatalogViewController: CatalogViewInput {
+extension PromotionViewController: PromotionInput {
 }
 
-private extension CatalogViewController {
+private extension PromotionViewController {
     func setupUI() {
         self.view.addSubview(
             self.scrollView

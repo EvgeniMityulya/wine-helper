@@ -26,10 +26,10 @@
 		7B92DF352BD52AEE00EC9788 /* RobotoFlex.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B92DF342BD52AEE00EC9788 /* RobotoFlex.ttf */; };
 		7B92DF372BD5336000EC9788 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF362BD5336000EC9788 /* UIStackView + Extensions.swift */; };
 		7B92DF3A2BD6941600EC9788 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B92DF392BD6941600EC9788 /* AlamofireImage */; };
-		7B9C8B822BCA82E000391CE1 /* CatalogSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B812BCA82E000391CE1 /* CatalogSection.swift */; };
-		7B9C8B842BCA88D600391CE1 /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B832BCA88D600391CE1 /* CatalogPresenter.swift */; };
-		7B9C8B862BCA88EB00391CE1 /* CatalogBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B852BCA88EB00391CE1 /* CatalogBuilder.swift */; };
-		7B9C8B882BCA88F300391CE1 /* CatalogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B872BCA88F300391CE1 /* CatalogRouter.swift */; };
+		7B9C8B822BCA82E000391CE1 /* PromotionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B812BCA82E000391CE1 /* PromotionSection.swift */; };
+		7B9C8B842BCA88D600391CE1 /* PromotionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B832BCA88D600391CE1 /* PromotionPresenter.swift */; };
+		7B9C8B862BCA88EB00391CE1 /* PromotionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B852BCA88EB00391CE1 /* PromotionBuilder.swift */; };
+		7B9C8B882BCA88F300391CE1 /* PromotionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9C8B872BCA88F300391CE1 /* PromotionRouter.swift */; };
 		7BA0E0A52B9C5C0D0061744C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */; };
 		7BA0E0A72B9C5C0D0061744C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */; };
 		7BA0E0A92B9C5C0D0061744C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0E0A82B9C5C0D0061744C /* LoginViewController.swift */; };
@@ -65,7 +65,7 @@
 		7BDDE7122BAF0A8E00B073EF /* EmailLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */; };
 		7BDDE7152BAF0FB700B073EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */; };
 		7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7182BAF104600B073EF /* MapViewController.swift */; };
-		7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */; };
+		7BDDE71C2BAF105A00B073EF /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71B2BAF105A00B073EF /* PromotionViewController.swift */; };
 		7BDDE71F2BAF13B300B073EF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */; };
 		849129F32BCA9E7500469E2C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 849129F22BCA9E7500469E2C /* GoogleSignIn */; };
 		849129F52BCA9E7500469E2C /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 849129F42BCA9E7500469E2C /* GoogleSignInSwift */; };
@@ -101,10 +101,10 @@
 		7B92DF302BD5282400EC9788 /* NSAttributedString + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString + Extension.swift"; sourceTree = "<group>"; };
 		7B92DF342BD52AEE00EC9788 /* RobotoFlex.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RobotoFlex.ttf; sourceTree = "<group>"; };
 		7B92DF362BD5336000EC9788 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
-		7B9C8B812BCA82E000391CE1 /* CatalogSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogSection.swift; sourceTree = "<group>"; };
-		7B9C8B832BCA88D600391CE1 /* CatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenter.swift; sourceTree = "<group>"; };
-		7B9C8B852BCA88EB00391CE1 /* CatalogBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogBuilder.swift; sourceTree = "<group>"; };
-		7B9C8B872BCA88F300391CE1 /* CatalogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogRouter.swift; sourceTree = "<group>"; };
+		7B9C8B812BCA82E000391CE1 /* PromotionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionSection.swift; sourceTree = "<group>"; };
+		7B9C8B832BCA88D600391CE1 /* PromotionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionPresenter.swift; sourceTree = "<group>"; };
+		7B9C8B852BCA88EB00391CE1 /* PromotionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionBuilder.swift; sourceTree = "<group>"; };
+		7B9C8B872BCA88F300391CE1 /* PromotionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionRouter.swift; sourceTree = "<group>"; };
 		7BA0E0A12B9C5C0D0061744C /* Wine Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wine Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA0E0A42B9C5C0D0061744C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA0E0A62B9C5C0D0061744C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLinkViewController.swift; sourceTree = "<group>"; };
 		7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7BDDE7182BAF104600B073EF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		7BDDE71B2BAF105A00B073EF /* PromotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		849129F62BCA9F9700469E2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		849129F82BCAB33700469E2C /* Wine Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wine Helper.entitlements"; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				7BA0E0F52B9E21400061744C /* InsetTextField.swift */,
-				7B9C8B812BCA82E000391CE1 /* CatalogSection.swift */,
+				7B9C8B812BCA82E000391CE1 /* PromotionSection.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -418,10 +418,10 @@
 		7BDDE71D2BAF105F00B073EF /* CatalogViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7BDDE71B2BAF105A00B073EF /* CatalogViewController.swift */,
-				7B9C8B832BCA88D600391CE1 /* CatalogPresenter.swift */,
-				7B9C8B852BCA88EB00391CE1 /* CatalogBuilder.swift */,
-				7B9C8B872BCA88F300391CE1 /* CatalogRouter.swift */,
+				7BDDE71B2BAF105A00B073EF /* PromotionViewController.swift */,
+				7B9C8B832BCA88D600391CE1 /* PromotionPresenter.swift */,
+				7B9C8B852BCA88EB00391CE1 /* PromotionBuilder.swift */,
+				7B9C8B872BCA88F300391CE1 /* PromotionRouter.swift */,
 				7B5962702BD3BE4400C2C2AB /* WineViewController */,
 			);
 			path = CatalogViewController;
@@ -538,7 +538,7 @@
 				7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */,
 				7BBB7F062BA77C0A000A66AA /* SignUpRouter.swift in Sources */,
 				7B5962722BD3BE5E00C2C2AB /* WineViewController.swift in Sources */,
-				7B9C8B822BCA82E000391CE1 /* CatalogSection.swift in Sources */,
+				7B9C8B822BCA82E000391CE1 /* PromotionSection.swift in Sources */,
 				7B92DF292BD5137D00EC9788 /* WinePresenter.swift in Sources */,
 				7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */,
 				7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */,
@@ -552,12 +552,12 @@
 				7B14300D2BA3C638000C6C8C /* AuthenticationPresenter.swift in Sources */,
 				7BA4D9962BCAEA4E0075FDFF /* MapPresenter.swift in Sources */,
 				7BA0E0A52B9C5C0D0061744C /* AppDelegate.swift in Sources */,
-				7B9C8B882BCA88F300391CE1 /* CatalogRouter.swift in Sources */,
-				7B9C8B862BCA88EB00391CE1 /* CatalogBuilder.swift in Sources */,
+				7B9C8B882BCA88F300391CE1 /* PromotionRouter.swift in Sources */,
+				7B9C8B862BCA88EB00391CE1 /* PromotionBuilder.swift in Sources */,
 				7B1430092BA36BFA000C6C8C /* SystemImage.swift in Sources */,
 				84928CEF2BD1BAC600D474C0 /* UserDefaultsManager.swift in Sources */,
 				7B1430152BA3C8A9000C6C8C /* LoginBuilder.swift in Sources */,
-				7B9C8B842BCA88D600391CE1 /* CatalogPresenter.swift in Sources */,
+				7B9C8B842BCA88D600391CE1 /* PromotionPresenter.swift in Sources */,
 				84928CED2BD1AB3100D474C0 /* TextValidationManager.swift in Sources */,
 				7BDDE7122BAF0A8E00B073EF /* EmailLinkViewController.swift in Sources */,
 				7BDDE7062BAEE50F00B073EF /* MainBuilder.swift in Sources */,
@@ -566,7 +566,7 @@
 				7B92DF2B2BD5137D00EC9788 /* WineRouter.swift in Sources */,
 				7BA4D99F2BCC44B40075FDFF /* PlaceAnnotation.swift in Sources */,
 				7BA4D99A2BCAEA600075FDFF /* MapRouter.swift in Sources */,
-				7BDDE71C2BAF105A00B073EF /* CatalogViewController.swift in Sources */,
+				7BDDE71C2BAF105A00B073EF /* PromotionViewController.swift in Sources */,
 				7BBB7F042BA77C0A000A66AA /* SignUpBuilder.swift in Sources */,
 				7B92DF312BD5282400EC9788 /* NSAttributedString + Extension.swift in Sources */,
 				7BA4D9A12BCC45910075FDFF /* CLLocation + Extensions.swift in Sources */,

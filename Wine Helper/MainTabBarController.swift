@@ -18,12 +18,12 @@ final class MainTabBarController: UITabBarController {
     
     private func setupControllers() {
         let mapViewController = MapBuilder.setupModule()
-        let catalogViewController = CatalogBuilder.setupModule()
+        let promotionsViewController = PromotionBuilder.setupModule()
 //        let catalogViewController = WineBuilder.setupModule()
         let profileViewController = ProfileViewController()
         
         let navMapViewController = mapViewController
-        let navCatalogViewController = catalogViewController
+        let navCatalogViewController = promotionsViewController
         let navProfileViewController = UINavigationController(rootViewController: profileViewController)
         
         self.viewControllers = [
