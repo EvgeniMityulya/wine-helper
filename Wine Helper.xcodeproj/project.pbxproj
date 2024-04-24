@@ -16,6 +16,14 @@
 		7B1430132BA3C89E000C6C8C /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430122BA3C89E000C6C8C /* LoginPresenter.swift */; };
 		7B1430152BA3C8A9000C6C8C /* LoginBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430142BA3C8A9000C6C8C /* LoginBuilder.swift */; };
 		7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1430162BA3C8B1000C6C8C /* LoginRouter.swift */; };
+		7B40C0E02BD96F7F00D2CDBF /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0DF2BD96F7F00D2CDBF /* CatalogPresenter.swift */; };
+		7B40C0E22BD96FC500D2CDBF /* CatalogBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0E12BD96FC500D2CDBF /* CatalogBuilder.swift */; };
+		7B40C0E42BD96FCF00D2CDBF /* CatalogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0E32BD96FCF00D2CDBF /* CatalogRouter.swift */; };
+		7B40C0E62BD971B700D2CDBF /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0E52BD971B700D2CDBF /* CatalogViewController.swift */; };
+		7B40C0E92BD9A96C00D2CDBF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0E82BD9A96C00D2CDBF /* FilterViewController.swift */; };
+		7B40C0ED2BD9A98700D2CDBF /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0EC2BD9A98700D2CDBF /* FilterPresenter.swift */; };
+		7B40C0EF2BD9A99900D2CDBF /* FilterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0EE2BD9A99900D2CDBF /* FilterBuilder.swift */; };
+		7B40C0F12BD9A9A600D2CDBF /* FilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B40C0F02BD9A9A600D2CDBF /* FilterRouter.swift */; };
 		7B5962722BD3BE5E00C2C2AB /* WineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5962712BD3BE5E00C2C2AB /* WineViewController.swift */; };
 		7B92DF292BD5137D00EC9788 /* WinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF262BD5137C00EC9788 /* WinePresenter.swift */; };
 		7B92DF2A2BD5137D00EC9788 /* WineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92DF272BD5137C00EC9788 /* WineBuilder.swift */; };
@@ -92,6 +100,14 @@
 		7B1430122BA3C89E000C6C8C /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		7B1430142BA3C8A9000C6C8C /* LoginBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBuilder.swift; sourceTree = "<group>"; };
 		7B1430162BA3C8B1000C6C8C /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		7B40C0DF2BD96F7F00D2CDBF /* CatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenter.swift; sourceTree = "<group>"; };
+		7B40C0E12BD96FC500D2CDBF /* CatalogBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogBuilder.swift; sourceTree = "<group>"; };
+		7B40C0E32BD96FCF00D2CDBF /* CatalogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogRouter.swift; sourceTree = "<group>"; };
+		7B40C0E52BD971B700D2CDBF /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		7B40C0E82BD9A96C00D2CDBF /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		7B40C0EC2BD9A98700D2CDBF /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
+		7B40C0EE2BD9A99900D2CDBF /* FilterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBuilder.swift; sourceTree = "<group>"; };
+		7B40C0F02BD9A9A600D2CDBF /* FilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRouter.swift; sourceTree = "<group>"; };
 		7B5962712BD3BE5E00C2C2AB /* WineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineViewController.swift; sourceTree = "<group>"; };
 		7B92DF262BD5137C00EC9788 /* WinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinePresenter.swift; sourceTree = "<group>"; };
 		7B92DF272BD5137C00EC9788 /* WineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineBuilder.swift; sourceTree = "<group>"; };
@@ -181,6 +197,29 @@
 				7B1430162BA3C8B1000C6C8C /* LoginRouter.swift */,
 			);
 			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		7B40C0DE2BD96F2D00D2CDBF /* CatalogViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7B40C0E52BD971B700D2CDBF /* CatalogViewController.swift */,
+				7B40C0DF2BD96F7F00D2CDBF /* CatalogPresenter.swift */,
+				7B40C0E12BD96FC500D2CDBF /* CatalogBuilder.swift */,
+				7B40C0E32BD96FCF00D2CDBF /* CatalogRouter.swift */,
+				7B40C0E72BD9A95000D2CDBF /* FilterViewController */,
+			);
+			path = CatalogViewController;
+			sourceTree = "<group>";
+		};
+		7B40C0E72BD9A95000D2CDBF /* FilterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7B40C0E82BD9A96C00D2CDBF /* FilterViewController.swift */,
+				7B40C0EC2BD9A98700D2CDBF /* FilterPresenter.swift */,
+				7B40C0EE2BD9A99900D2CDBF /* FilterBuilder.swift */,
+				7B40C0F02BD9A9A600D2CDBF /* FilterRouter.swift */,
+			);
+			path = FilterViewController;
 			sourceTree = "<group>";
 		};
 		7B5962702BD3BE4400C2C2AB /* WineViewController */ = {
@@ -387,7 +426,8 @@
 			isa = PBXGroup;
 			children = (
 				7BDDE71A2BAF104900B073EF /* MapViewController */,
-				7BDDE71D2BAF105F00B073EF /* CatalogViewController */,
+				7BDDE71D2BAF105F00B073EF /* PromotionViewController */,
+				7B40C0DE2BD96F2D00D2CDBF /* CatalogViewController */,
 				7BDDE7172BAF0FC900B073EF /* ProfileViewController */,
 			);
 			path = MainControllers;
@@ -415,7 +455,7 @@
 			path = MapViewController;
 			sourceTree = "<group>";
 		};
-		7BDDE71D2BAF105F00B073EF /* CatalogViewController */ = {
+		7BDDE71D2BAF105F00B073EF /* PromotionViewController */ = {
 			isa = PBXGroup;
 			children = (
 				7BDDE71B2BAF105A00B073EF /* PromotionViewController.swift */,
@@ -424,7 +464,7 @@
 				7B9C8B872BCA88F300391CE1 /* PromotionRouter.swift */,
 				7B5962702BD3BE4400C2C2AB /* WineViewController */,
 			);
-			path = CatalogViewController;
+			path = PromotionViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B40C0E62BD971B700D2CDBF /* CatalogViewController.swift in Sources */,
 				7BDDE70B2BAF004700B073EF /* NetworkManager.swift in Sources */,
 				7BA0E0A92B9C5C0D0061744C /* LoginViewController.swift in Sources */,
 				7B92DF2D2BD518B100EC9788 /* Wine.swift in Sources */,
@@ -534,10 +575,12 @@
 				7B14300B2BA3B7DD000C6C8C /* UIFont + Extensions.swift in Sources */,
 				7BA688BB2BAF5A2300F941EA /* LoginUserRequest.swift in Sources */,
 				7BDDE71F2BAF13B300B073EF /* MainTabBarController.swift in Sources */,
+				7B40C0E22BD96FC500D2CDBF /* CatalogBuilder.swift in Sources */,
 				7B92DF2A2BD5137D00EC9788 /* WineBuilder.swift in Sources */,
 				7B1430172BA3C8B1000C6C8C /* LoginRouter.swift in Sources */,
 				7BBB7F062BA77C0A000A66AA /* SignUpRouter.swift in Sources */,
 				7B5962722BD3BE5E00C2C2AB /* WineViewController.swift in Sources */,
+				7B40C0F12BD9A9A600D2CDBF /* FilterRouter.swift in Sources */,
 				7B9C8B822BCA82E000391CE1 /* PromotionSection.swift in Sources */,
 				7B92DF292BD5137D00EC9788 /* WinePresenter.swift in Sources */,
 				7BA0E0F42B9C6FFF0061744C /* AuthenticationViewController.swift in Sources */,
@@ -550,9 +593,11 @@
 				7B1430112BA3C842000C6C8C /* AuthenticationRouter.swift in Sources */,
 				7B1430132BA3C89E000C6C8C /* LoginPresenter.swift in Sources */,
 				7B14300D2BA3C638000C6C8C /* AuthenticationPresenter.swift in Sources */,
+				7B40C0ED2BD9A98700D2CDBF /* FilterPresenter.swift in Sources */,
 				7BA4D9962BCAEA4E0075FDFF /* MapPresenter.swift in Sources */,
 				7BA0E0A52B9C5C0D0061744C /* AppDelegate.swift in Sources */,
 				7B9C8B882BCA88F300391CE1 /* PromotionRouter.swift in Sources */,
+				7B40C0E02BD96F7F00D2CDBF /* CatalogPresenter.swift in Sources */,
 				7B9C8B862BCA88EB00391CE1 /* PromotionBuilder.swift in Sources */,
 				7B1430092BA36BFA000C6C8C /* SystemImage.swift in Sources */,
 				84928CEF2BD1BAC600D474C0 /* UserDefaultsManager.swift in Sources */,
@@ -560,12 +605,15 @@
 				7B9C8B842BCA88D600391CE1 /* PromotionPresenter.swift in Sources */,
 				84928CED2BD1AB3100D474C0 /* TextValidationManager.swift in Sources */,
 				7BDDE7122BAF0A8E00B073EF /* EmailLinkViewController.swift in Sources */,
+				7B40C0EF2BD9A99900D2CDBF /* FilterBuilder.swift in Sources */,
 				7BDDE7062BAEE50F00B073EF /* MainBuilder.swift in Sources */,
 				7BDDE7042BAEE4CF00B073EF /* MainPresenter.swift in Sources */,
 				7BA0E0A72B9C5C0D0061744C /* SceneDelegate.swift in Sources */,
+				7B40C0E42BD96FCF00D2CDBF /* CatalogRouter.swift in Sources */,
 				7B92DF2B2BD5137D00EC9788 /* WineRouter.swift in Sources */,
 				7BA4D99F2BCC44B40075FDFF /* PlaceAnnotation.swift in Sources */,
 				7BA4D99A2BCAEA600075FDFF /* MapRouter.swift in Sources */,
+				7B40C0E92BD9A96C00D2CDBF /* FilterViewController.swift in Sources */,
 				7BDDE71C2BAF105A00B073EF /* PromotionViewController.swift in Sources */,
 				7BBB7F042BA77C0A000A66AA /* SignUpBuilder.swift in Sources */,
 				7B92DF312BD5282400EC9788 /* NSAttributedString + Extension.swift in Sources */,

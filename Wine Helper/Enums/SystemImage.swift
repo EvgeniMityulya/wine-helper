@@ -17,9 +17,12 @@ enum SystemImage: String {
     case location = "location"
     case wineglass = "wineglass"
     case star = "star"
+    case magnifyglass = "sparkle.magnifyingglass"
     case starFill = "star.fill"
     case starHalf = "star.leadinghalf.filled"
     case compass = "location.circle"
+    case params = "slider.horizontal.3"
+   
     
     var image: UIImage? {
         return UIImage(systemName: self.rawValue)

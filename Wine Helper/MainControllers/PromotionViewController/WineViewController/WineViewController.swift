@@ -375,19 +375,21 @@ final class WineViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.CustomColors.background
-        
-        self.setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        
         self.loadingIndicator.startAnimating()
-        NetworkManager.shared.getWine(with: self.id) { result in
+        
+        NetworkManager.shared.getWineAllInfo(with: self.id) { result in
             switch result {
             case .success(let wine):
                 print(wine)
                 self.setupData(with: wine, image: self.image)
                 self.loadingIndicator.stopAnimating()
+                self.setupUI()
             case .failure(let error):
                 print("Failed to fetch wine: \(error.localizedDescription)")
             }
@@ -399,17 +401,17 @@ final class WineViewController: UIViewController {
             self.fillStars(with: 3.58)
             self.fillGrapeVarieties(with: ["dada", "dadasdasdsa"])
             self.winePictureImageView.image = image
-            self.wineBrandLabel.attributedText = NSAttributedString.attributedString(withText: model.prod.name ?? "", spacing: 2.0)
+            self.wineBrandLabel.attributedText = NSAttributedString.attributedString(withText: model.prod?.name ?? "", spacing: 2.0)
             self.wineNameLabel.attributedText = NSAttributedString.attributedString(withText: (model.name ?? "") + " " + String(model.yearProduced ?? 0), spacing: 2.0)
             self.winePriceLabel.attributedText = NSAttributedString.attributedString(withText: "BYN " + String(model.price ?? 0), spacing: 1.0)
             self.wineAlcoholLabel.text = String(model.alcoholPercentage ?? 0) + " % alc."
-            self.wineCountryLabel.text = model.prod.region?.country.name
-            self.wineRegionLabel.text = model.prod.region?.name
-            self.wineCategoryLabel.text = (model.category.color ?? "") + " " + (model.category.sweetness ?? "")
-            self.wineDescriptionLabel.text = model.prod.details
-            self.wineSweetnessLabel.text = String(model.score.sweetness ?? 0) + " / 5"
-            self.wineBitternessLabel.text = String(model.score.bitterness ?? 0) + " / 5"
-            self.wineAcidityLabel.text = String(model.score.acidity ?? 0) + " / 5"
+            self.wineCountryLabel.text = model.prod?.region?.country.name
+            self.wineRegionLabel.text = model.prod?.region?.name
+            self.wineCategoryLabel.text = (model.category?.color ?? "") + " " + (model.category?.sweetness ?? "")
+            self.wineDescriptionLabel.text = model.prod?.details
+            self.wineSweetnessLabel.text = String(model.score?.sweetness ?? 0) + " / 5"
+            self.wineBitternessLabel.text = String(model.score?.bitterness ?? 0) + " / 5"
+            self.wineAcidityLabel.text = String(model.score?.acidity ?? 0) + " / 5"
         }
     }
     

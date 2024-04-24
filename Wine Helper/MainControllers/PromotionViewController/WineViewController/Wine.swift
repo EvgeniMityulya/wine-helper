@@ -16,9 +16,9 @@ struct WineDTO: Codable {
     let yearProduced: Int?
     let price: Double?
     let alcoholPercentage: Double?
-    let category: CategoryDTO
-    let prod: ProducerDTO
-    let score: ScoreDTO
+    let category: CategoryDTO?
+    let prod: ProducerDTO?
+    let score: ScoreDTO?
 }
 
 

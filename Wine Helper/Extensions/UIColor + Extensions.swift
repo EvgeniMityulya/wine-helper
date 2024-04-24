@@ -36,5 +36,11 @@ extension UIColor {
         static var shadowColor: UIColor {
             return UIColor(named: "ShadowColor") ?? .white
         }
+        
+        static var locateColor: UIColor {
+            return UIColor(named: "LocateColor") ?? .white
+        }
+        
     }
+    
 }

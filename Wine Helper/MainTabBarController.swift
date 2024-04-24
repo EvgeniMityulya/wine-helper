@@ -28,16 +28,18 @@ final class MainTabBarController: UITabBarController {
     
     private func setupControllers() {
         let mapViewController = MapBuilder.setupModule()
-        let promotionsViewController = PromotionBuilder.setupModule()
-//        let catalogViewController = WineBuilder.setupModule()
+        let promotionViewController = PromotionBuilder.setupModule()
+        let catalogViewController = CatalogBuilder.setupModule()
         let profileViewController = ProfileViewController()
         
         let navMapViewController = mapViewController
-        let navCatalogViewController = promotionsViewController
+        let navPromotionViewController = promotionViewController
+        let navCatalogViewController = catalogViewController
         let navProfileViewController = UINavigationController(rootViewController: profileViewController)
         
         self.viewControllers = [
             navMapViewController,
+            navPromotionViewController,
             navCatalogViewController,
             navProfileViewController,
         ]
@@ -45,25 +47,25 @@ final class MainTabBarController: UITabBarController {
     
     private func setupUI() {
         
-//        let blurEffectStyle: UIBlurEffect.Style
-//            if self.traitCollection.userInterfaceStyle == .dark {
-//                blurEffectStyle = .prominent
-//            } else {
-//                blurEffectStyle = .dark
-//            }
-
+        //        let blurEffectStyle: UIBlurEffect.Style
+        //            if self.traitCollection.userInterfaceStyle == .dark {
+        //                blurEffectStyle = .prominent
+        //            } else {
+        //                blurEffectStyle = .dark
+        //            }
+        
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = tabBar.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tabBar.insertSubview(blurView, at: 0)
         
-//        let appereance = UITabBarAppearance()
-//        appereance.configureWithDefaultBackground()
-//        appereance.backgroundColor = UIColor.black
-//        self.tabBar.isTranslucent = true
-//        self.tabBar.standardAppearance = appereance
-//        self.tabBar.scrollEdgeAppearance = appereance
+        //        let appereance = UITabBarAppearance()
+        //        appereance.configureWithDefaultBackground()
+        //        appereance.backgroundColor = UIColor.black
+        //        self.tabBar.isTranslucent = true
+        //        self.tabBar.standardAppearance = appereance
+        //        self.tabBar.scrollEdgeAppearance = appereance
         
         self.tabBar.tintColor = UIColor.CustomColors.burgundy
         self.tabBar.unselectedItemTintColor = UIColor.CustomColors.shadowColor
@@ -73,10 +75,10 @@ final class MainTabBarController: UITabBarController {
         let iconBarSize: CGFloat = 33
         let inset = (tabBar.frame.height - iconBarSize) / 2
         if let items = tabBar.items {
-                for item in items {
-                    item.imageInsets = UIEdgeInsets(top: inset, left: 0, bottom: -inset, right: 0)
-                }
+            for item in items {
+                item.imageInsets = UIEdgeInsets(top: inset, left: 0, bottom: -inset, right: 0)
             }
+        }
         
         self.tabBar.items?[0].image = SystemImage.location.image?
             .withRenderingMode(
@@ -102,7 +104,18 @@ final class MainTabBarController: UITabBarController {
                 )
             )
         
-        self.tabBar.items?[2].image = SystemImage.person.image?
+        self.tabBar.items?[2].image = SystemImage.magnifyglass.image?
+            .withRenderingMode(
+                .alwaysOriginal
+            )
+            .resized(
+                to: CGSize(
+                    width: iconBarSize,
+                    height: iconBarSize
+                )
+            )
+        
+        self.tabBar.items?[3].image = SystemImage.person.image?
             .withRenderingMode(
                 .alwaysOriginal
             ).resized(
@@ -110,7 +123,7 @@ final class MainTabBarController: UITabBarController {
                     width: iconBarSize,
                     height: iconBarSize
                 )
-        )
+            )
     }
 }
 
@@ -121,7 +134,6 @@ extension MainTabBarController: UITabBarControllerDelegate {
               let imageView = tabBar.subviews[idx + 2].subviews.compactMap({ $0 as? UIImageView }).first else {
             return
         }
-        
         imageView.layer.add(bounceAnimation, forKey: nil)
     }
 }

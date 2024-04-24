@@ -69,8 +69,8 @@ class MapViewController: UIViewController {
         configuration.image = SystemImage.compass.image?.applyingSymbolConfiguration(
                 .init(pointSize: 30))
         configuration.cornerStyle = .medium
-        configuration.baseForegroundColor = .burgundy
-        configuration.baseBackgroundColor = .burgundy
+        configuration.baseForegroundColor = .locate
+        configuration.baseBackgroundColor = .locate
         configuration.contentInsets = .zero
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false

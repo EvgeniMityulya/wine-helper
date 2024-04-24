@@ -22,7 +22,7 @@ final class NetworkManager {
     private init() {}
     
     enum Constants {
-        static let baseURL = "https://d87c4a7be9d46d.lhr.life/api/v1.0"
+        static let baseURL = "https://fc35af49ba3cae.lhr.life/api/v1.0"
     }
     
     enum EndPoints {
@@ -30,7 +30,11 @@ final class NetworkManager {
         
         enum Sections {
             static let special = "/Specs"
+            static let newArrivals = "/New"
+            static let bestSellers = "/Best"
+            
             static let images = "/Imgs/"
+            static let cell = "/Cell"
         }
     }
     
@@ -47,9 +51,21 @@ final class NetworkManager {
 //        }
 //    }
     
-    func getWine(with id: Int, completion: @escaping(Result<WineDTO, RequestError>) -> Void) {
+    func getWineAllInfo(with id: Int, completion: @escaping(Result<WineDTO, RequestError>) -> Void) {
         AF.request(Constants.baseURL + EndPoints.wines + "/" + String(id)).responseDecodable(of: WineDTO.self) { response in
-            print(Constants.baseURL + EndPoints.wines + String(id))
+            print(Constants.baseURL + EndPoints.wines + "/" + String(id))
+            switch response.result {
+            case .success(let coin):
+                print(coin)
+                completion(.success(coin))
+            case .failure:
+                completion(.failure(.ErrorRequest))
+            }
+        }
+    }
+    
+    func getWines(from prevId: Int, to nextId: Int, completion: @escaping(Result<[WineCellDTO], RequestError>) -> Void) {
+        AF.request(Constants.baseURL + EndPoints.wines + EndPoints.Sections.cell + "/" + String(prevId) + "/" + String(nextId)).responseDecodable(of: [WineCellDTO].self) { response in
             switch response.result {
             case .success(let coin):
                 print(coin)
@@ -78,6 +94,48 @@ final class NetworkManager {
             case .success(let image):
                 print(image)
                 completion(.success(image))
+            case .failure:
+                completion(.failure(.ErrorRequest))
+            }
+        }
+    }
+    
+    
+    // MARK: - Sections(Special, New Arrivals, Best Sellers)
+    
+    func getWineSpecialSectionCells(count: Int, completion: @escaping(Result<[WineCellDTO], RequestError>) -> Void) {
+        AF.request(Constants.baseURL + EndPoints.wines + EndPoints.Sections.special + "/" + String(count)).responseDecodable(of: [WineCellDTO].self) { response in
+            print(Constants.baseURL + EndPoints.wines + EndPoints.Sections.special + "/" + String(count))
+            switch response.result {
+            case .success(let coin):
+                print(coin)
+                completion(.success(coin))
+            case .failure:
+                completion(.failure(.ErrorRequest))
+            }
+        }
+    }
+    
+    func getWineNewArrivalsSectionCells(count: Int, completion: @escaping(Result<[WineCellDTO], RequestError>) -> Void) {
+        AF.request(Constants.baseURL + EndPoints.wines + EndPoints.Sections.newArrivals + "/" + String(count)).responseDecodable(of: [WineCellDTO].self) { response in
+            print(Constants.baseURL + EndPoints.wines + EndPoints.Sections.newArrivals + "/" + String(count))
+            switch response.result {
+            case .success(let coin):
+                print(coin)
+                completion(.success(coin))
+            case .failure:
+                completion(.failure(.ErrorRequest))
+            }
+        }
+    }
+    
+    func getWineBestSellersSectionCells(count: Int, completion: @escaping(Result<[WineCellDTO], RequestError>) -> Void) {
+        AF.request(Constants.baseURL + EndPoints.wines + EndPoints.Sections.bestSellers + "/" + String(count)).responseDecodable(of: [WineCellDTO].self) { response in
+            print(Constants.baseURL + EndPoints.wines + EndPoints.Sections.bestSellers + "/" + String(count))
+            switch response.result {
+            case .success(let coin):
+                print(coin)
+                completion(.success(coin))
             case .failure:
                 completion(.failure(.ErrorRequest))
             }

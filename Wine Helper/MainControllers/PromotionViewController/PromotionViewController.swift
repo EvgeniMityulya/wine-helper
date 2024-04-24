@@ -1,5 +1,5 @@
 //
-//  CatalogViewController.swift
+//  PromotionViewController.swift
 //  Wine Helper
 //
 //  Created by Евгений Митюля on 3/23/24.
@@ -14,7 +14,7 @@ final class PromotionViewController: UIViewController {
     
     var output: PromotionViewOutput?
     
-    let specialSectionLoadingIndicator = UIActivityIndicatorView(style: .medium)
+    private var isDataLoaded = false
     
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -75,38 +75,54 @@ final class PromotionViewController: UIViewController {
         
         self.setupUI()
         self.configureActions()
-        NetworkManager.shared.getWineSectionCells { [weak self] result in
-            switch result {
-            case .success(let wineCellDTOs):
-                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.specialOfferSection)
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
-//        NetworkManager.shared.getWineSectionCells { [weak self] result in
-//            switch result {
-//            case .success(let wineCellDTOs):
-//                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.newArrivalsSection)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//        
-//        NetworkManager.shared.getWineSectionCells { [weak self] result in
-//            switch result {
-//            case .success(let wineCellDTOs):
-//                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.specialOfferSection)
-//                
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        
+        guard !isDataLoaded else { return }
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        NetworkManager.shared.getWineSpecialSectionCells(count: 5) { [weak self] result in
+            switch result {
+            case .success(let wineCellDTOs):
+                print("Fetched Special Offer wines")
+                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.specialOfferSection)
+            case .failure(let error):
+                print("Failed to fetch Special Offer wines: \(error.localizedDescription)")
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        NetworkManager.shared.getWineNewArrivalsSectionCells(count: 5) { [weak self] result in
+            switch result {
+            case .success(let wineCellDTOs):
+                print("Fetched New Arrivals wines")
+                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.newArrivalsSection)
+            case .failure(let error):
+                print("Failed to fetch New Arrivals wines: \(error.localizedDescription)")
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        NetworkManager.shared.getWineBestSellersSectionCells(count: 5) { [weak self] result in
+            switch result {
+            case .success(let wineCellDTOs):
+                print("Fetched Best Sellers wines")
+                self?.fetchImagesForWineCellDTOs(wineCellDTOs, section: self?.bestSellersSection)
+            case .failure(let error):
+                print("Failed to fetch Best Sellers wines: \(error.localizedDescription)")
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            print("All requests completed")
+            self?.isDataLoaded = true
+        }
     }
     
     private func configureActions() {
@@ -127,12 +143,20 @@ final class PromotionViewController: UIViewController {
         
         bestSellersSection.seeAllButtonAction = { [weak self] in
             guard let self = self else { return }
-            self.output?.newArrivalsSeeAllButtonTouchUpInside()
+            self.output?.bestSellersSeeAllButtonTouchUpInside()
         }
     }
     
     private func configureCollectionViewCellActions() {
         specialOfferSection.cellSelectionHandler = { model in
+            self.output?.collectionViewCellTouchUpInside(model: model)
+        }
+        
+        newArrivalsSection.cellSelectionHandler = { model in
+            self.output?.collectionViewCellTouchUpInside(model: model)
+        }
+        
+        bestSellersSection.cellSelectionHandler = { model in
             self.output?.collectionViewCellTouchUpInside(model: model)
         }
     }

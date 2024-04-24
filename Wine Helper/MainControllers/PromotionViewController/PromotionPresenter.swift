@@ -36,6 +36,7 @@ final class PromotionPresenter: PromotionViewOutput {
     }
     
     func collectionViewCellTouchUpInside(model: WineSelectionInfo) {
+        print(model.id)
         self.router.goToWineViewController(with: model.id, image: model.image)
     }
 }
