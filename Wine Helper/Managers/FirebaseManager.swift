@@ -152,6 +152,7 @@ final class FirebaseManager {
     public func signOut(completion: @escaping (Error?) -> Void) {
         do {
             try Auth.auth().signOut()
+            UserDefaultsManager.isOnboardingComplete = false
             completion(nil)
         } catch let error {
             completion(error)

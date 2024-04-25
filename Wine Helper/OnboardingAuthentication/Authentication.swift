@@ -14,7 +14,7 @@ protocol Authentication {
 extension Authentication where Self: UIViewController {
     func checkAuth() {
         if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.checkAuthentication()
+            sceneDelegate.checkUserStatus()
         }
     }
 }

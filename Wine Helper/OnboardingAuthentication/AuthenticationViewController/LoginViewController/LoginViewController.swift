@@ -260,7 +260,7 @@ extension LoginViewController: LoginViewInput {
     
     func checkAuth() {
         if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.checkAuthentication()
+            sceneDelegate.checkUserStatus()
         }
     }
 }

@@ -16,5 +16,3 @@ enum FilterBuilder {
         return viewController
     }
 }
-
-

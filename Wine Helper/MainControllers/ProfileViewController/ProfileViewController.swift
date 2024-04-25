@@ -69,7 +69,7 @@ private extension ProfileViewController {
             }
             
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                sceneDelegate.checkAuthentication()
+                sceneDelegate.checkUserStatus()
             }
         }
         print("Sign out success")

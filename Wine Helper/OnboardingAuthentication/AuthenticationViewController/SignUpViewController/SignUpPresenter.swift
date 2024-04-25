@@ -193,7 +193,7 @@ extension SignUpViewController: ASAuthorizationControllerDelegate, ASAuthorizati
                 }
                 
                 if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                    sceneDelegate.checkAuthentication()
+                    sceneDelegate.checkUserStatus()
                 }
                 print("Registered success")
             }

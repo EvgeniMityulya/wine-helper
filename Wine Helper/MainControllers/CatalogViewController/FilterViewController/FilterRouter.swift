@@ -8,7 +8,6 @@
 import UIKit
 
 protocol FilterRouterInput {
-    func goToWineViewController(with id: Int, image: UIImage)
 }
 
 final class FilterRouter {
@@ -21,4 +20,5 @@ final class FilterRouter {
 }
 
 extension FilterRouter: FilterRouterInput {
+    
 }

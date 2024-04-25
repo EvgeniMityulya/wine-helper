@@ -16,6 +16,6 @@ final class FilterViewController: UIViewController {
     var output: FilterViewOutput?
 }
 
-extension FilterViewController: CatalogInput {
+extension FilterViewController: FilterInput {
     
 }

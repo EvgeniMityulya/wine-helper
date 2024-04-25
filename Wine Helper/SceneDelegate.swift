@@ -14,10 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-//        let rootViewController = AuthenticationBuilder.setupModule()
-//        self.window?.rootViewController =  UINavigationController(rootViewController: rootViewController)
         self.setupWindow(with: scene)
-        self.checkAuthentication()
+        self.checkUserStatus()
     }
 
     public func setupWindow(with scene: UIScene) {
@@ -26,10 +24,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
     
-    public func checkAuthentication() {
+    public func checkUserStatus() {
         if Auth.auth().currentUser == nil {
             self.setupRootViewController(with: AuthenticationBuilder.setupModule())
         } else {
+            self.isOnboardingCompleted()
+        }
+    }
+    
+    public func isOnboardingCompleted() {
+        if UserDefaultsManager.isOnboardingComplete == false ||  UserDefaultsManager.isOnboardingComplete == nil {
+            self.setupRootViewController(with: OnboardingBuilder.setupModule())
+        } else if UserDefaultsManager.isOnboardingComplete == true {
             self.setupRootViewController(with: MainTabBarController())
         }
     }

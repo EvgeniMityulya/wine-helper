@@ -9,7 +9,15 @@ import Foundation
 
 enum Image {
     enum Registration {
-        static let topIconWine = "topIconWine"
-        static let googleIcon = "googleIcon"
+        static let topIconWine = "Auth-Onboarding"
+        static let googleIcon = "Google-Icon"
+    }
+    
+    enum Onboarding {
+        static let welcome = "Welcome-Onboarding"
+        static let newHorizons = "Wine-Onboarding"
+        static let search = "Search-Oboarding"
+        static let map = "Map-Onboarding"
+        static let promotion = "Promotion-Onboarding"
     }
 }
