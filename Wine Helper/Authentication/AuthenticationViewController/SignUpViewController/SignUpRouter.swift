@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SignUpRouterInput {
-    func goToNextScreen()
+    func navigateToOnboardingScreen()
 }
 
 final class SignUpRouter {
@@ -21,8 +21,9 @@ final class SignUpRouter {
 }
 
 extension SignUpRouter: SignUpRouterInput {
-    func goToNextScreen() {
-        let viewController = AuthenticationBuilder.setupModule()
-        self.viewController.navigationController?.pushViewController(viewController, animated: true)
+    func navigateToOnboardingScreen() {
+        if let sceneDelegate = self.viewController.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.checkUserStatus()
+        }
     }
 }

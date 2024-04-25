@@ -57,7 +57,7 @@ final class SignUpPresenter: SignUpViewOutput {
                 return
             }
             
-            self.input.checkAuth()
+            self.router.navigateToOnboardingScreen()
             print("Registered success")
         }
 
@@ -82,7 +82,7 @@ final class SignUpPresenter: SignUpViewOutput {
                     return
                 }
                 
-                self.input.checkAuth()
+                self.router.navigateToOnboardingScreen()
                 print("Registered success")
             }
         }

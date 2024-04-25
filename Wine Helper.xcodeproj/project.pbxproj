@@ -65,14 +65,12 @@
 		7BA688B52BAF46A600F941EA /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688B42BAF46A600F941EA /* FirebaseManager.swift */; };
 		7BA688B82BAF48EF00F941EA /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688B72BAF48EF00F941EA /* RegisterUserRequest.swift */; };
 		7BA688BB2BAF5A2300F941EA /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688BA2BAF5A2300F941EA /* LoginUserRequest.swift */; };
-		7BA688C02BB040FC00F941EA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA688BF2BB040FC00F941EA /* Authentication.swift */; };
 		7BBB7EFD2BA77960000A66AA /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7EFC2BA77960000A66AA /* UIView + Extensions.swift */; };
 		7BBB7F032BA77C0A000A66AA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7F002BA77C0A000A66AA /* SignUpViewController.swift */; };
 		7BBB7F042BA77C0A000A66AA /* SignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7F012BA77C0A000A66AA /* SignUpBuilder.swift */; };
 		7BBB7F052BA77C0A000A66AA /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7EFF2BA77C0A000A66AA /* SignUpPresenter.swift */; };
 		7BBB7F062BA77C0A000A66AA /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB7F022BA77C0A000A66AA /* SignUpRouter.swift */; };
 		7BDDE70B2BAF004700B073EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE70A2BAF004700B073EF /* NetworkManager.swift */; };
-		7BDDE7122BAF0A8E00B073EF /* EmailLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */; };
 		7BDDE7152BAF0FB700B073EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */; };
 		7BDDE7192BAF104600B073EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE7182BAF104600B073EF /* MapViewController.swift */; };
 		7BDDE71C2BAF105A00B073EF /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDE71B2BAF105A00B073EF /* PromotionViewController.swift */; };
@@ -152,14 +150,12 @@
 		7BA688B42BAF46A600F941EA /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		7BA688B72BAF48EF00F941EA /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		7BA688BA2BAF5A2300F941EA /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
-		7BA688BF2BB040FC00F941EA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		7BBB7EFC2BA77960000A66AA /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		7BBB7EFF2BA77C0A000A66AA /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		7BBB7F002BA77C0A000A66AA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7BBB7F012BA77C0A000A66AA /* SignUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBuilder.swift; sourceTree = "<group>"; };
 		7BBB7F022BA77C0A000A66AA /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
 		7BDDE70A2BAF004700B073EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLinkViewController.swift; sourceTree = "<group>"; };
 		7BDDE7142BAF0FB700B073EF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7BDDE7182BAF104600B073EF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7BDDE71B2BAF105A00B073EF /* PromotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
@@ -277,7 +273,7 @@
 				7BA0E1022B9E37B50061744C /* Enums */,
 				7BA0E1012B9E37A70061744C /* CustomComponents */,
 				7BA0E0FF2B9E37840061744C /* Extensions */,
-				7BA0E1032B9E37C80061744C /* OnboardingAuthentication */,
+				7BA0E1032B9E37C80061744C /* Authentication */,
 				7BDDE7092BAEE57000B073EF /* OnboardingSupport */,
 				7BDDE7162BAF0FBF00B073EF /* MainControllers */,
 				7BDDE71E2BAF13B300B073EF /* MainTabBarController.swift */,
@@ -320,14 +316,13 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		7BA0E1032B9E37C80061744C /* OnboardingAuthentication */ = {
+		7BA0E1032B9E37C80061744C /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				7BA688BF2BB040FC00F941EA /* Authentication.swift */,
 				7BA688B92BAF51C800F941EA /* Models */,
 				7BA0E1042B9E37DB0061744C /* AuthenticationViewController */,
 			);
-			path = OnboardingAuthentication;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		7BA0E1042B9E37DB0061744C /* AuthenticationViewController */ = {
@@ -418,7 +413,6 @@
 				7BBB7EFF2BA77C0A000A66AA /* SignUpPresenter.swift */,
 				7BBB7F012BA77C0A000A66AA /* SignUpBuilder.swift */,
 				7BBB7F022BA77C0A000A66AA /* SignUpRouter.swift */,
-				7BDDE7132BAF0AA200B073EF /* EmailLinkViewController */,
 			);
 			path = SignUpViewController;
 			sourceTree = "<group>";
@@ -434,14 +428,6 @@
 				7B40C0F82BD9C50D00D2CDBF /* OnboardingRouter.swift */,
 			);
 			path = OnboardingSupport;
-			sourceTree = "<group>";
-		};
-		7BDDE7132BAF0AA200B073EF /* EmailLinkViewController */ = {
-			isa = PBXGroup;
-			children = (
-				7BDDE7112BAF0A8E00B073EF /* EmailLinkViewController.swift */,
-			);
-			path = EmailLinkViewController;
 			sourceTree = "<group>";
 		};
 		7BDDE7162BAF0FBF00B073EF /* MainControllers */ = {
@@ -625,7 +611,6 @@
 				7B1430152BA3C8A9000C6C8C /* LoginBuilder.swift in Sources */,
 				7B9C8B842BCA88D600391CE1 /* PromotionPresenter.swift in Sources */,
 				84928CED2BD1AB3100D474C0 /* TextValidationManager.swift in Sources */,
-				7BDDE7122BAF0A8E00B073EF /* EmailLinkViewController.swift in Sources */,
 				7B40C0EF2BD9A99900D2CDBF /* FilterBuilder.swift in Sources */,
 				7B40C0FE2BD9CC2B00D2CDBF /* OnboardingSlideCollectionViewCell.swift in Sources */,
 				7BA0E0A72B9C5C0D0061744C /* SceneDelegate.swift in Sources */,
@@ -647,7 +632,6 @@
 				7BA4D99C2BCAECBB0075FDFF /* MarkAnnotation.swift in Sources */,
 				7B14300F2BA3C645000C6C8C /* AuthenticationBuilder.swift in Sources */,
 				7BA4D9A42BCC48470075FDFF /* PlacesTableViewController.swift in Sources */,
-				7BA688C02BB040FC00F941EA /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -54,7 +54,7 @@ final class LoginPresenter: LoginViewOutput {
                 return
             }
             
-            self.input.checkAuth()
+            self.router.navigateToOnboardingScreen()
             print("Login success")
         }
     }
@@ -85,7 +85,7 @@ final class LoginPresenter: LoginViewOutput {
                         return
                     }
                     
-                    self.input.checkAuth()
+                    self.router.navigateToOnboardingScreen()
                     print("Registered success")
                 }
             }
@@ -101,7 +101,7 @@ final class LoginPresenter: LoginViewOutput {
                 return
             }
             
-            self.input.checkAuth()
+            self.router.navigateToOnboardingScreen()
             print("Login success")
         }
     }

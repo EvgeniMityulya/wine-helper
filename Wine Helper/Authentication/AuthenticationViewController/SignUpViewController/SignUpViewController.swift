@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SignUpViewInput: AnyObject, Authentication {
+protocol SignUpViewInput: AnyObject {
     func changeEyeButtonImage()
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
     func getRegisterUserRequest() -> (RegisterUserRequest)?
@@ -16,9 +16,25 @@ protocol SignUpViewInput: AnyObject, Authentication {
 final class SignUpViewController: UIViewController {
     
     var output: SignUpViewOutput?
+    
     var currentNonce: String?
     
-    var passwordTextFieldBottomConstraint: NSLayoutConstraint?
+    private var passwordTextFieldBottomConstraint: NSLayoutConstraint?
+    
+    private enum Text {
+        enum Button: String {
+            case signUp = "Sign Up"
+            case apple = "Continue with Apple"
+            case google = "Continue with Google"
+        }
+        
+        enum Placeholder: String {
+            case username = "Username"
+            case email = "Email"
+            case password = "Password"
+            case separator = "or"
+        }
+    }
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -77,7 +93,7 @@ final class SignUpViewController: UIViewController {
     private lazy var usernameTextField: UITextField = {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
-        textField.placeholder = "Username"
+        textField.placeholder = Text.Placeholder.username.rawValue
         textField.returnKeyType = .done
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -88,7 +104,7 @@ final class SignUpViewController: UIViewController {
     private lazy var mailTextField: UITextField = {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
-        textField.placeholder = "Email"
+        textField.placeholder = Text.Placeholder.email.rawValue
         textField.returnKeyType = .done
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -101,7 +117,7 @@ final class SignUpViewController: UIViewController {
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
-        textField.placeholder = "Password"
+        textField.placeholder = Text.Placeholder.password.rawValue
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.returnKeyType = .done
         textField.autocorrectionType = .no
@@ -121,7 +137,7 @@ final class SignUpViewController: UIViewController {
     
     private lazy var signUpButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle(Text.Button.signUp.rawValue, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -138,7 +154,7 @@ final class SignUpViewController: UIViewController {
     
     private lazy var appleLoginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Continue with Apple", for: .normal)
+        button.setTitle(Text.Button.apple.rawValue, for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -149,8 +165,9 @@ final class SignUpViewController: UIViewController {
         button.tintColor = .black
         button.contentMode = .scaleAspectFit
         
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.imagePadding = 10
+        button.configuration = buttonConfig
         
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
@@ -164,10 +181,9 @@ final class SignUpViewController: UIViewController {
     
     private lazy var googleLoginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Continue with Google", for: .normal)
+        button.setTitle(Text.Button.google.rawValue, for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
         
-        //        button.setImage(UIImage(named: Image.Registration.googleIcon), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
@@ -177,8 +193,9 @@ final class SignUpViewController: UIViewController {
         }
         button.contentMode = .scaleAspectFit
         
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.imagePadding = 10
+        button.configuration = buttonConfig
         
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1

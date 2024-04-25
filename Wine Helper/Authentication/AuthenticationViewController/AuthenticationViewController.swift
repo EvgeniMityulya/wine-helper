@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol AuthenticationViewInput: AnyObject {
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
 }
@@ -16,10 +15,21 @@ final class AuthenticationViewController: UIViewController {
     
     var output: AuthenticationViewOutput?
     
+    private enum ButtonText: String {
+        case login = "Log in"
+        case signUp = "Sign Up"
+    }
+    
+    private let slide: OnboardingSlide = OnboardingSlide(
+        title: "Wine Helper",
+        desciption: "We will help you choose a wine based on your preferences!",
+        image: UIImage(named: Image.Registration.topIconWine)
+    )
+    
     private lazy var topIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: Image.Registration.topIconWine)
+        imageView.image = slide.image
         imageView.tintColor = .lightGray
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -28,7 +38,7 @@ final class AuthenticationViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Wine Helper"
+        label.text = slide.title
         label.font = UIFont.openSans(ofSize: 24, style: .bold)
         label.numberOfLines = 0
         label.textAlignment = .left
@@ -41,7 +51,7 @@ final class AuthenticationViewController: UIViewController {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "We will help you choose a wine based on your preferences!"
+        label.text = slide.desciption
         label.font = UIFont.openSans(ofSize: 18, style: .semiBold)
         label.numberOfLines = 0
         label.textAlignment = .left
@@ -53,7 +63,7 @@ final class AuthenticationViewController: UIViewController {
     
     private lazy var logInButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log in", for: .normal)
+        button.setTitle(ButtonText.login.rawValue, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -70,7 +80,7 @@ final class AuthenticationViewController: UIViewController {
     
     private lazy var signUpButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle(ButtonText.signUp.rawValue, for: .normal)
         button.setTitleColor(UIColor.CustomColors.buttonWhiteTextColor, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -80,7 +90,6 @@ final class AuthenticationViewController: UIViewController {
         button.layer.borderColor = UIColor.CustomColors.burgundy.cgColor
         button.layer.masksToBounds = true
         
-//        button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(signUpButtonTouchDown), for: .touchDown)
         button.addTarget(self, action: #selector(signUpButtonTouchUpInside), for: .touchUpInside)
         button.addTarget(self, action: #selector(signUpButtonTouchUpOutside), for: .touchUpOutside)
@@ -127,11 +136,13 @@ private extension AuthenticationViewController {
 
 private extension AuthenticationViewController {
     func setupUI() {
-        self.view.addSubview(self.topIconImageView)
-        self.view.addSubview(self.signUpButton)
-        self.view.addSubview(self.logInButton)
-        self.view.addSubview(self.subtitleLabel)
-        self.view.addSubview(self.titleLabel)
+        self.view.addSubview(
+            self.topIconImageView,
+            self.signUpButton,
+            self.logInButton,
+            self.subtitleLabel,
+            self.titleLabel
+        )
         
         NSLayoutConstraint.activate([
             self.topIconImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 44),

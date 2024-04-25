@@ -7,17 +7,31 @@
 
 import UIKit
 
-protocol LoginViewInput: AnyObject, Authentication {
+protocol LoginViewInput: AnyObject {
     func changeEyeButtonImage()
     func changeButtonBackgroundColorWithAlpha(_ sender: UIButton, color: UIColor, alpha: CGFloat)
     func getLoginUserRequest() -> (LoginUserRequest)?
 }
 
-final class LoginViewController: UIViewController, Authentication {
+final class LoginViewController: UIViewController {
     
     var output: LoginViewOutput?
     
-    var passwordTextFieldBottomConstraint: NSLayoutConstraint?
+    private var passwordTextFieldBottomConstraint: NSLayoutConstraint?
+    
+    private enum Text {
+        enum Button: String {
+            case login = "Login"
+            case apple = "Continue with Apple"
+            case google = "Continue with Google"
+        }
+        
+        enum Placeholder: String {
+            case email = "Email"
+            case password = "Password"
+            case separator = "or"
+        }
+    }
     
     private lazy var topIconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -49,7 +63,7 @@ final class LoginViewController: UIViewController, Authentication {
     private lazy var mailTextField: UITextField = {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
-        textField.placeholder = "Email"
+        textField.placeholder = Text.Placeholder.email.rawValue
         textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -58,7 +72,7 @@ final class LoginViewController: UIViewController, Authentication {
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField.textFieldWithInsets(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         textField.setUnderLine()
-        textField.placeholder = "Password"
+        textField.placeholder = Text.Placeholder.password.rawValue
         textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isSecureTextEntry = true
@@ -76,7 +90,7 @@ final class LoginViewController: UIViewController, Authentication {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
+        button.setTitle(Text.Button.login.rawValue, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -93,7 +107,7 @@ final class LoginViewController: UIViewController, Authentication {
     
     private lazy var appleLoginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Continue with Apple", for: .normal)
+        button.setTitle(Text.Button.apple.rawValue, for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -104,8 +118,9 @@ final class LoginViewController: UIViewController, Authentication {
         button.tintColor = .black
         button.contentMode = .scaleAspectFit
         
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.imagePadding = 10
+        button.configuration = buttonConfig
         
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
@@ -117,7 +132,7 @@ final class LoginViewController: UIViewController, Authentication {
     
     private lazy var googleLoginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Continue with Google", for: .normal)
+        button.setTitle(Text.Button.google.rawValue, for: .normal)
         button.setTitleColor(UIColor.CustomColors.text, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -129,8 +144,9 @@ final class LoginViewController: UIViewController, Authentication {
         button.contentMode = .scaleAspectFit
         
         
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.imagePadding = 10
+        button.configuration = buttonConfig
         
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
@@ -145,7 +161,7 @@ final class LoginViewController: UIViewController, Authentication {
     private lazy var separatorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "or"
+        label.text = Text.Placeholder.separator.rawValue
         label.textAlignment = .center
         label.backgroundColor = UIColor.CustomColors.background
         label.textColor = .systemGray

@@ -33,7 +33,7 @@ final class AuthenticationPresenter: AuthenticationViewOutput {
     
     func loginButtonTouchUpInside(_ sender: UIButton) {
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.burgundy, alpha: 1)
-        router.goToLoginScreen()
+        router.navigateToLoginScreen()
     }
     
     func loginButtonTouchUpOutside(_ sender: UIButton) {
@@ -46,7 +46,7 @@ final class AuthenticationPresenter: AuthenticationViewOutput {
     
     func signUpButtonTouchUpInside(_ sender: UIButton) {
         input.changeButtonBackgroundColorWithAlpha(sender, color: UIColor.CustomColors.background, alpha: 1)
-        router.goToSignUpScreen()
+        router.navigateToSignUpScreen()
     }
     
     func signUpButtonTouchUpOutside(_ sender: UIButton) {

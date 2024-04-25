@@ -10,12 +10,9 @@ import UIKit
 final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupControllers()
         self.setupUI()
         self.selectedIndex = 1
         self.delegate = self
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.CustomColors.burgundy
-        navigationItem.backBarButtonItem?.tintColor = UIColor.CustomColors.burgundy
     }
     
     private var bounceAnimation: CAKeyframeAnimation = {
@@ -26,7 +23,15 @@ final class MainTabBarController: UITabBarController {
         return bounceAnimation
     }()
     
-    private func setupControllers() {
+    private func setupUI() {
+        self.setupControllers()
+        self.setupBackground()
+        self.setupImages()
+    }
+}
+
+private extension MainTabBarController {
+    func setupControllers() {
         let mapViewController = MapBuilder.setupModule()
         let promotionViewController = PromotionBuilder.setupModule()
         let catalogViewController = CatalogBuilder.setupModule()
@@ -45,32 +50,19 @@ final class MainTabBarController: UITabBarController {
         ]
     }
     
-    private func setupUI() {
-        
-        //        let blurEffectStyle: UIBlurEffect.Style
-        //            if self.traitCollection.userInterfaceStyle == .dark {
-        //                blurEffectStyle = .prominent
-        //            } else {
-        //                blurEffectStyle = .dark
-        //            }
-        
+    func setupBackground() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = tabBar.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tabBar.insertSubview(blurView, at: 0)
-        
-        //        let appereance = UITabBarAppearance()
-        //        appereance.configureWithDefaultBackground()
-        //        appereance.backgroundColor = UIColor.black
-        //        self.tabBar.isTranslucent = true
-        //        self.tabBar.standardAppearance = appereance
-        //        self.tabBar.scrollEdgeAppearance = appereance
-        
+    }
+    
+    func setupImages() {
         self.tabBar.tintColor = UIColor.CustomColors.burgundy
         self.tabBar.unselectedItemTintColor = UIColor.CustomColors.shadowColor
-        
-        
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.CustomColors.burgundy
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.CustomColors.burgundy
         
         let iconBarSize: CGFloat = 33
         let inset = (tabBar.frame.height - iconBarSize) / 2

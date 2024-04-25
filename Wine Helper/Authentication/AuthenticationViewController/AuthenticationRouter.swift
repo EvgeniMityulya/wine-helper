@@ -8,8 +8,8 @@
 import UIKit
 
 protocol AuthenticationRouterInput {
-    func goToLoginScreen()
-    func goToSignUpScreen()
+    func navigateToLoginScreen()
+    func navigateToSignUpScreen()
 }
 
 final class AuthenticationRouter {
@@ -22,14 +22,13 @@ final class AuthenticationRouter {
 }
 
 extension AuthenticationRouter: AuthenticationRouterInput {
-    func goToLoginScreen() {
+    func navigateToLoginScreen() {
         let viewController = LoginBuilder.setupModule()
         self.viewController.navigationController?.navigationBar.tintColor = UIColor.CustomColors.burgundy
         self.viewController.navigationController?.pushViewController(viewController, animated: true)
-        
     }
     
-    func goToSignUpScreen() {
+    func navigateToSignUpScreen() {
         let viewController = SignUpBuilder.setupModule()
         self.viewController.navigationController?.navigationBar.tintColor = UIColor.CustomColors.burgundy
         self.viewController.navigationController?.pushViewController(viewController, animated: true)
