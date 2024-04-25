@@ -18,7 +18,6 @@ final class WineViewController: UIViewController {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
-        indicator.layer.zPosition = 10
         return indicator
     }()
     
@@ -269,6 +268,7 @@ final class WineViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 15
+        stackView.distribution = .fillEqually
         stackView.layoutMargins = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
         
@@ -304,7 +304,7 @@ final class WineViewController: UIViewController {
     private lazy var wineSweetnessLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.textAlignment = .right
         label.numberOfLines = 0
         label.font = .playfair(ofSize: 14, style: .regular)
         return label
@@ -330,6 +330,7 @@ final class WineViewController: UIViewController {
     private lazy var wineBitternessLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
         label.numberOfLines = 0
         label.font = .playfair(ofSize: 14, style: .regular)
         return label
@@ -355,6 +356,7 @@ final class WineViewController: UIViewController {
     private lazy var wineAcidityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
         label.numberOfLines = 0
         label.font = .playfair(ofSize: 14, style: .regular)
         return label
@@ -367,6 +369,7 @@ final class WineViewController: UIViewController {
         self.id = id
         self.image = image
         super.init(nibName: nil, bundle: nil)
+        self.loadingIndicator.startAnimating()
     }
     
     required init?(coder: NSCoder) {
@@ -374,21 +377,22 @@ final class WineViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.view.backgroundColor = UIColor.CustomColors.background
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         
-        self.loadingIndicator.startAnimating()
-        
+        self.setupLoadingIndicator()
         NetworkManager.shared.getWineAllInfo(with: self.id) { result in
             switch result {
             case .success(let wine):
                 print(wine)
-                self.setupData(with: wine, image: self.image)
                 self.loadingIndicator.stopAnimating()
+                self.setupData(with: wine, image: self.image)
                 self.setupUI()
             case .failure(let error):
                 print("Failed to fetch wine: \(error.localizedDescription)")
@@ -399,7 +403,7 @@ final class WineViewController: UIViewController {
     private func setupData(with model: WineDTO, image: UIImage) {
         DispatchQueue.main.async {
             self.fillStars(with: 3.58)
-            self.fillGrapeVarieties(with: ["dada", "dadasdasdsa"])
+            self.fillGrapeVarieties(with: ["Tempranillo", "Rijoha"])
             self.winePictureImageView.image = image
             self.wineBrandLabel.attributedText = NSAttributedString.attributedString(withText: model.prod?.name ?? "", spacing: 2.0)
             self.wineNameLabel.attributedText = NSAttributedString.attributedString(withText: (model.name ?? "") + " " + String(model.yearProduced ?? 0), spacing: 2.0)
@@ -471,7 +475,6 @@ extension WineViewController: WineViewInput {
 private extension WineViewController {
     func setupUI() {
         self.view.addSubview(
-            self.loadingIndicator,
             self.scrollView
         )
         
@@ -547,9 +550,6 @@ private extension WineViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             
-            self.loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            
             self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
             self.contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
             self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
@@ -606,6 +606,14 @@ private extension WineViewController {
             self.wineCharacteristicsStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
             self.wineCharacteristicsStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -20),
         ])
+        
     }
     
+    func setupLoadingIndicator() {
+        self.view.addSubview(loadingIndicator)
+        NSLayoutConstraint.activate([
+            self.loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
+    }
 }

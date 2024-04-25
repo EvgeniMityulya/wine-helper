@@ -22,7 +22,7 @@ class WineCell: UICollectionViewCell {
         
         view.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 3)
-        view.layer.shadowOpacity = 0.1
+        view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 10
         return view
     }()
@@ -33,6 +33,11 @@ class WineCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "wine")
         imageView.layer.zPosition = 2
+        
+        imageView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        imageView.layer.shadowOpacity = 0.2
+        imageView.layer.shadowRadius = 10
         return imageView
     }()
     
@@ -63,6 +68,11 @@ class WineCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        cellBackgroundView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
+        wineImageView.layer.shadowColor = UIColor.CustomColors.shadowColor.cgColor
     }
     
     

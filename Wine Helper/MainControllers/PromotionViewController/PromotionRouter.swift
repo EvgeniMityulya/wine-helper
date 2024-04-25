@@ -23,6 +23,7 @@ final class PromotionRouter {
 extension PromotionRouter: PromotionRouterInput {
     func goToWineViewController(with id: Int, image: UIImage) {
         let viewController = WineBuilder.setupModule(with: id, image: image)
+        self.viewController.navigationController?.navigationBar.tintColor = UIColor.CustomColors.burgundy
         self.viewController.navigationController?.pushViewController(viewController, animated: true)
     }
 }

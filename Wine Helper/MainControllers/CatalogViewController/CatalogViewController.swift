@@ -16,8 +16,19 @@ final class CatalogViewController: UIViewController {
     
     var output: CatalogViewOutput?
     
+    private var isDataLoaded = false
+    
     var wines = [WineCellDTO]()
     var images = [UIImage]()
+    
+    var cellSelectionHandler: ((WineSelectionInfo) -> Void)?
+    
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     private lazy var searchTextField: UISearchTextField = {
         let searchTextField = UISearchTextField()
@@ -62,10 +73,10 @@ final class CatalogViewController: UIViewController {
         
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 30
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(WineCell.self, forCellWithReuseIdentifier: "WineCell")
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -81,11 +92,11 @@ final class CatalogViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.CustomColors.background
-        
         self.setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        guard !isDataLoaded else { return }
         NetworkManager.shared.getWines(from: 0, to: 20) { [weak self] result in
             switch result {
             case .success(let wineCellDTOs):
@@ -98,7 +109,7 @@ final class CatalogViewController: UIViewController {
     }
     
     private func fetchImagesForWineCellDTOs(_ wineCellDTOs: [WineCellDTO]) {
-//        specialOfferSection.setLoadingIndicatorVisible(true)
+        self.setLoadingIndicatorVisible(true)
         let dispatchGroup = DispatchGroup()
         
         for wineCellDTO in wineCellDTOs {
@@ -121,8 +132,10 @@ final class CatalogViewController: UIViewController {
         
         dispatchGroup.notify(queue: .main) {
             print("Success")
-//            section?.setLoadingIndicatorVisible(false)
-//            section?.setWines(self.wines, self.images)
+            
+            self.setWines(self.wines, self.images)
+            self.isDataLoaded = true
+            self.setLoadingIndicatorVisible(false)
         }
     }
 }
@@ -135,7 +148,16 @@ extension CatalogViewController: UITextFieldDelegate {
     
 }
 
-extension CatalogViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CatalogViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedWine = wines[indexPath.item]
+        let image = images[indexPath.item]
+        
+        let selectionInfo = WineSelectionInfo(image: image, id: selectedWine.id ?? 0)
+        
+        output?.collectionViewCellTouchUpInside(model: selectionInfo)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.wines.count
     }
@@ -147,12 +169,40 @@ extension CatalogViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.configure(with: wine, image: image)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth: CGFloat = (collectionView.bounds.width - 80) / 2
+        let cellHeight: CGFloat = 250
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    }
+    
+    func setWines(_ wines: [WineCellDTO], _ images: [UIImage]) {
+        self.wines = wines
+        self.images = images
+        DispatchQueue.main.async {
+            self.winesCollectionView.reloadData()
+        }
+    }
+    
+    func setLoadingIndicatorVisible(_ isVisible: Bool) {
+        if isVisible {
+            self.loadingIndicator.startAnimating()
+        } else {
+            self.loadingIndicator.stopAnimating()
+        }
+    }
 }
 
 private extension CatalogViewController {
     func setupUI() {
         self.view.addSubview(
             self.searchTextField,
+            self.loadingIndicator,
             self.winesCollectionView
         )
         
@@ -165,7 +215,10 @@ private extension CatalogViewController {
             self.winesCollectionView.topAnchor.constraint(equalTo: self.searchTextField.bottomAnchor),
             self.winesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             self.winesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.winesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            self.winesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            self.loadingIndicator.centerXAnchor.constraint(equalTo: self.winesCollectionView.centerXAnchor),
+            self.loadingIndicator.centerYAnchor.constraint(equalTo: self.winesCollectionView.centerYAnchor),
         ])
     }
 }

@@ -162,7 +162,7 @@ final class PromotionViewController: UIViewController {
     }
     
     private func fetchImagesForWineCellDTOs(_ wineCellDTOs: [WineCellDTO], section: PromotionSection?) {
-        specialOfferSection.setLoadingIndicatorVisible(true)
+        section?.setLoadingIndicatorVisible(true)
         let dispatchGroup = DispatchGroup()
         var wines: [WineCellDTO] = []
         var images: [UIImage] = []

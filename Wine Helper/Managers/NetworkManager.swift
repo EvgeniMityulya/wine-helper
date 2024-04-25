@@ -22,7 +22,7 @@ final class NetworkManager {
     private init() {}
     
     enum Constants {
-        static let baseURL = "https://fc35af49ba3cae.lhr.life/api/v1.0"
+        static let baseURL = "https://3d3860751d1691.lhr.life/api/v1.0"
     }
     
     enum EndPoints {

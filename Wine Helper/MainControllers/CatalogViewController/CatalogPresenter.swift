@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CatalogViewOutput {
-
+    func collectionViewCellTouchUpInside(model: WineSelectionInfo)
 }
 
 final class CatalogPresenter: CatalogViewOutput {
@@ -21,4 +21,8 @@ final class CatalogPresenter: CatalogViewOutput {
         self.router = router
     }
     
+    func collectionViewCellTouchUpInside(model: WineSelectionInfo) {
+        print(model.id)
+        self.router.goToWineViewController(with: model.id, image: model.image)
+    }
 }
